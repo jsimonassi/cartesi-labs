@@ -1,24 +1,28 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
+	return (
+		<div className="App">
+			<header className="App-header">
+				<p>
           Cartesi Labs
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+				</p>
+				<a
+					className="App-link"
+					href="https://reactjs.org"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
           Learn React
-        </a>
-      </header>
-    </div>
-  );
+				</a>
+				<h1 className="undeline bg-red-500 text-h4">
+          Hello world!
+				</h1>
+			</header>
+
+		</div>
+	);
 }
 
 export default App;
