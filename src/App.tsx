@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import BaseBtn from "./components/buttons/BaseBtn";
 
 function App() {
 	return (
@@ -20,6 +21,7 @@ function App() {
 				<h1 className="undeline bg-red-500 text-h4">
           Hello world!
 				</h1>
+				<BaseBtn color="black">Botao</BaseBtn>
 			</header>
 		</div>
 	);
