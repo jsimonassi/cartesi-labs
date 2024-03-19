@@ -2,6 +2,7 @@
   "name": "cartesi-labs",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://jsimonassi.github.io/cartesi-labs",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -19,10 +20,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy" : "yarn run build",
+    "deploy" : "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet"
   },
   "eslintConfig": {
     "extends": [
@@ -48,5 +51,6 @@
     "eslint": "^8.27.0",
     "eslint-plugin-react": "^7.31.10",
     "tailwindcss": "^3.4.1"
+    "gh-pages": "^6.1.1"
   }
 }

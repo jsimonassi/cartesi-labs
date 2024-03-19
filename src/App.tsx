@@ -16,11 +16,11 @@ function App() {
 				>
           Learn React
 				</a>
+
 				<h1 className="undeline bg-red-500 text-h4">
           Hello world!
 				</h1>
 			</header>
-
 		</div>
 	);
 }
