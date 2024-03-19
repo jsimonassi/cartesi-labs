@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/cartesi-labs/static/css/main.f855e6bc.css",
-    "main.js": "/cartesi-labs/static/js/main.7e1c6ef5.js",
+    "main.css": "/cartesi-labs/static/css/main.4281ee9d.css",
+    "main.js": "/cartesi-labs/static/js/main.e3964059.js",
     "static/js/453.50cb4794.chunk.js": "/cartesi-labs/static/js/453.50cb4794.chunk.js",
     "index.html": "/cartesi-labs/index.html",
-    "main.f855e6bc.css.map": "/cartesi-labs/static/css/main.f855e6bc.css.map",
-    "main.7e1c6ef5.js.map": "/cartesi-labs/static/js/main.7e1c6ef5.js.map",
+    "main.4281ee9d.css.map": "/cartesi-labs/static/css/main.4281ee9d.css.map",
+    "main.e3964059.js.map": "/cartesi-labs/static/js/main.e3964059.js.map",
     "453.50cb4794.chunk.js.map": "/cartesi-labs/static/js/453.50cb4794.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f855e6bc.css",
-    "static/js/main.7e1c6ef5.js"
+    "static/css/main.4281ee9d.css",
+    "static/js/main.e3964059.js"
   ]
 }
