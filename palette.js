@@ -5,6 +5,7 @@ export default {
 	secondary: "#CCFDFF",
 	success: "#4BB543",
 	secondaryText: "#C5C5C5",
+	cardBackground: "#2F2F2F",
 	graydark: "#707070",
 	warning: "#E4B52E",
 	white: "white",

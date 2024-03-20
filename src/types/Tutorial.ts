@@ -6,6 +6,7 @@ export interface Tutorial {
     steps: TutorialStep[],
     address: string,
     likes: number,
+    createdBy: string,
 }
 
 export interface TutorialStep {

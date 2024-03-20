@@ -1,6 +1,7 @@
 // import { useNavigate } from 'react-router-dom';
 
 // import DefaultBtn from '../../../components/atoms/buttons/DefaultBtn';
+import React from "react";
 
 const Error = () => {
 	// const navigate = useNavigate()

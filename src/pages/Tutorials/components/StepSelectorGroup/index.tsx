@@ -11,7 +11,7 @@ interface IProps {
 
 const StepSelectorGroup = (props: IProps) => {
 	return (
-		<div className="flex flex-col max-w-80">
+		<>
 			{
 				props.steps.map((step, index) => {
 					return (
@@ -25,7 +25,7 @@ const StepSelectorGroup = (props: IProps) => {
 					);
 				})
 			}
-		</div>
+		</>
 	);
 };
 
