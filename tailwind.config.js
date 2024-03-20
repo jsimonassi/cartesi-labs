@@ -37,9 +37,9 @@ module.exports = {
 			"h4": "32px",
 			"h5": "24px",
 			"h6": "20px",
-			"label-lg": "14px",
-			"label-md": "12px",
-			"label-sm": "10px",
+			"label-lg": "20px",
+			"label-md": "16px",
+			"label-sm": "12px",
 			"body-lg": "16px",
 			"body-md": "14px",
 			"body-sm": "12px",
@@ -58,36 +58,7 @@ module.exports = {
 			fontSize: {
 				xs: "0.65rem"
 			},
-			colors: {
-				...palette,
-				"primary-l": "#00F7FF",
-				"primary-m": "#00F7FF",
-				"primary-d": "#024B99",
-				"primary-h": "#006BDD",
-				"secondary-l": "#BAAFFA",
-				"secondary-m": "#CCFDFF",
-				"secondary-d": "#342687",
-				"secondary-h": "#4F39CB",
-				"gray-900": "#34383D",
-				"gray-800": "#464A52",
-				"gray-700": "#4F545C",
-				"gray-600": "#696F7A",
-				"gray-500": "#79828F",
-				"gray-400": "#8B95A3",
-				"gray-300": "#9CA7B8",
-				"gray-200": "#DFE6F0",
-				"gray-100": "#F2F4F6",
-  
-				"error-l": "#FEE2E3",
-				"error-m": "#E02D38",
-  
-				"success": "#7EFFC1",
-				"success-l": "#7EFFC1",
-				"warning": "#F0C93C",
-				"info": "#36F3FF",
-  
-        
-			},
+			colors: palette,
 			keyframes: {
 				rotate: {
 					"0%": { transform: "rotate(0deg)" },

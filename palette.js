@@ -1,5 +1,6 @@
 export default {
 	primary: "#00F7FF",
+	primaryDark: "#00D1D9",
 	secondary: "#CCFDFF",
 	success: "#4BB543",
 	graydark: "#707070",

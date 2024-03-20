@@ -21,7 +21,7 @@ function App() {
 				<h1 className="undeline bg-red-500 text-h4">
           Hello world!
 				</h1>
-				<BaseBtn color="black">Botao</BaseBtn>
+				<BaseBtn variant="contained" size="md" color="black">Botao</BaseBtn>
 			</header>
 		</div>
 	);
