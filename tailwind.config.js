@@ -4,7 +4,7 @@ import palette from "./palette.js";
 // eslint-disable-next-line no-undef
 module.exports = {
 	mode: "jit",
-	content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+	content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 	theme: {
 		screens: {
 
@@ -37,9 +37,9 @@ module.exports = {
 			"h4": "32px",
 			"h5": "24px",
 			"h6": "20px",
-			"label-lg": "14px",
-			"label-md": "12px",
-			"label-sm": "10px",
+			"label-lg": "20px",
+			"label-md": "16px",
+			"label-sm": "12px",
 			"body-lg": "16px",
 			"body-md": "14px",
 			"body-sm": "12px",
@@ -58,7 +58,44 @@ module.exports = {
 			fontSize: {
 				xs: "0.65rem"
 			},
-			colors: palette
+			colors: palette,
+			keyframes: {
+				rotate: {
+					"0%": { transform: "rotate(0deg)" },
+					"100%": { transform: "rotate(1turn)" },
+				},
+				rotateOpacity: {
+					"0%": {
+						transform: "rotate(0deg)",
+						opacity: 0.1,
+					},
+					"100%": {
+						transform: "rotate(1turn)",
+						opacity: 1,
+					},
+				},
+				fadeIn: {
+					"0%": { opacity: 0 },
+					"100%": { opacity: 1 },
+				},
+				fadeUp: {
+					"0%": { 
+						transform: "translateY(10px)",
+						opacity: 0 
+					},
+					"100%": { 
+						transform: "translateY(0)",
+						opacity: 1
+					},
+				}
+			},
+			animation: {
+				rotate: "rotate ease-in 1s infinite",
+				rotateOpacity1: "rotateOpacity ease-in 1s infinite 0.1s",
+				rotateOpacity2: "rotateOpacity ease-in 1s infinite 0.2s",
+				fadeIn: "fadeIn ease-out 0.2s",
+				fadeUp: "fadeUp ease-out 0.2s"
+			},
 		},
 		colors: {
 			transparent: "transparent",

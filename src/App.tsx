@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
-import { Home } from "./pages/Home";
+import BaseBtn from "./components/buttons/BaseBtn";
+import Router from "./router";
+
 
 function App() {
 	return (
-		<div className="App h-screen">
-			<Home />
-		</div>
+		<Router />
 	);
 }
 
