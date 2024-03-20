@@ -6,7 +6,7 @@ interface IProps {
 	isFixed?: boolean,
 	hasBackground?: boolean,
 	size: number,
-	color: "primary" | "secondary" | "white" | "error" | "success" | "black",
+	color: "primary" | "black" | "white",
 	className?: string
 }
 
@@ -27,19 +27,16 @@ const Spinner = (props: IProps) => {
 	};
 
 	const effects_classes = {
-		base: "rounded-full border-[3px] border-transparent border-solid box-border border-l-[3px] border-l-white",
+		base: "rounded-full border-[3px] border-transparent border-solid box-border border-l-[3px]",
 		effect_1: "absolute animate-rotate 1s",
 		effect_2: "absolute animate-rotateOpacity1",
 		effect_3: "animate-rotateOpacity2",
 	};
 
 	const color_classes = {
-		primary: "border-l-primary-m",
-		secondary: "border-l-secondary-m",
-		white: "border-l-white",
-		error: "border-l-error-m",
-		success: "border-l-success",
-		black: "border-l-black"
+		primary: "border-l-primary",
+		black: "border-l-black",
+		white: "border-l-white"
 	};
 
 	return (

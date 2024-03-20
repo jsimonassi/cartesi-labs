@@ -37,7 +37,7 @@ interface IProps {
      * 
      * @default primary
      */
-    color?: "primary" | "secondary" | "error" | "success" | "white" | "black"
+    color?: "primary" | "black"
     /**
      * Tamanhos do Componente: `lg`, `md`, `sm`
      */
@@ -69,81 +69,36 @@ const BaseBtn = (props: IProps) => {
 	const theme = {
 		primary: {
 			outline: {
-				base: "border bg-transparent border-primary-m text-primary-m hover:bg-primary-l hover:text-white",
-				loading: "bg-transparent text-white border border-primary-m"
+				base: "border bg-transparent border-primary text-primary hover:bg-primary hover:text-white",
+				loading: "bg-transparent text-transparent border border-primary"
 			},
 			contained: {
-				base: "bg-primary-m text-white border border-primary-m hover:bg-primary-h",
-				loading: "bg-primary-m text-primary-m border border-primary-m"
+				base: "bg-primary text-black border border-primary hover:bg-primaryDark hover:border-primaryDark",
+				loading: "bg-primary text-primary border border-primary"
 			},
-		},
-		secondary: {
-			outline: {
-				base: "border border-solid bg-transparent border-secondary-m text-secondary-m hover:bg-secondary-l",
-				loading: "bg-transparent text-white border border-secondary-m "
-			},
-			contained: {
-				base: "bg-secondary-m text-white border border-secondary-m hover:bg-secondary-h",
-				loading: "bg-secondary-m text-secondary-m border border-secondary-m"
-			},
-			loadingClass: "bg-secondary-m text-white border border-secondary-m hover:bg-secondary-m hover:text-secondary-m"
-		},
-		error: {
-			outline: {
-				base: "border border-solid bg-transparent border-error-m text-error-m hover:bg-error-l",
-				loading: "bg-transparent text-white border border-error-m "
-			},
-			contained: {
-				base: "bg-error-m text-white border border-error-m hover:bg-error-h",
-				loading: "bg-error-m text-error-m border border-error-m"
-			},
-			loadingClass: "bg-error-m text-white border border-error-m hover:bg-error-m hover:text-error-m"
-		},
-		success: {
-			outline: {
-				base: "border border-solid bg-transparent border-success text-success hover:bg-success-l",
-				loading: "bg-transparent text-white border border-success "
-			},
-			contained: {
-				base: "bg-success text-white border border-success hover:bg-success-l",
-				loading: "bg-success text-success border border-success"
-			},
-			loadingClass: "bg-success text-white border border-success hover:bg-success hover:text-success"
 		},
 		black: {
 			outline: {
-				base: "border border-solid bg-transparent border-black text-black hover:bg-black-l",
-				loading: "bg-transparent text-white border border-black "
+				base: "border border-solid bg-transparent border-black text-black hover:bg-black hover:text-white",
+				loading: "bg-transparent text-transparent border border-black"
 			},
 			contained: {
-				base: "bg-black text-white border border-black hover:bg-black-h",
+				base: "bg-black text-white border border-black hover:bg-gray-900",
 				loading: "bg-black text-black border border-black"
 			},
-			loadingClass: "bg-black text-white border border-black hover:bg-black hover:text-black"
 		},
-		white: {
-			outline: {
-				base: "border border-solid bg-transparent border-white text-white hover:bg-white-l",
-				loading: "bg-transparent text-white border border-white "
-			},
-			contained: {
-				base: "bg-white text-black border border-white hover:bg-white-h",
-				loading: "bg-white text-white border border-white"
-			},
-			loadingClass: "bg-white text-white border border-white hover:bg-white hover:text-white"
-		}
 	};
 
 	const classes = {
-		base: "relative focus:outline-none transition ease-in-out duration-300 font-medium",
+		base: "relative focus:outline-none transition ease-in-out duration-300 font-medium rounded-md",
 		disabled: {
 			outline: "border bg-transparent border-gray-300 text-gray-300 cursor-not-allowed",
 			contained: "bg-gray-300 text-gray-100 opacity-50 cursor-not-allowed"
 		},
 		size: {
-			sm: "px-2 text-label-sm h-6 rounded-[3px]",
-			md: "px-4 text-label-lg h-[30px] rounded-[3px]",
-			lg: "px-8 text-label-lg h-9 rounded"
+			sm: "px-4 py-2 text-label-sm",
+			md: "px-6 py-3 text-label-md",
+			lg: "px-8 py-4 text-label-lg"
 		}
 	};
 
