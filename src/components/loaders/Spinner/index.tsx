@@ -27,7 +27,7 @@ const Spinner = (props: IProps) => {
 	};
 
 	const effects_classes = {
-		base: "rounded-full border-[3px] border-transparent border-solid box-border border-l-[3px]",
+		base: "rounded-full border-[3px] border-transparent border-solid box-border border-l-[3px]	",
 		effect_1: "absolute animate-rotate 1s",
 		effect_2: "absolute animate-rotateOpacity1",
 		effect_3: "animate-rotateOpacity2",
