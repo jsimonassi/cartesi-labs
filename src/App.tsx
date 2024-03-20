@@ -1,11 +1,12 @@
 import React from "react";
 import "./App.css";
 import BaseBtn from "./components/buttons/BaseBtn";
+import Tutorials from "./pages/Tutorials";
 
 function App() {
 	return (
 		<div className="App">
-			<header className="App-header">
+			{/* <header className="App-header">
 				<p>
           Cartesi Labs
 				</p>
@@ -22,7 +23,8 @@ function App() {
           Hello world!
 				</h1>
 				<BaseBtn variant="contained" size="md" color="black">Botao</BaseBtn>
-			</header>
+			</header> */}
+			<Tutorials />
 		</div>
 	);
 }
