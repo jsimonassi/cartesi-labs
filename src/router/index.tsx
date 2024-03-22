@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
 
-import Home from "../pages/Home";
+import { Home } from "../pages/Home";
 import AddTutorials from "../pages/AddTutorials";
 import Error from "../pages/misc/Error";
 
