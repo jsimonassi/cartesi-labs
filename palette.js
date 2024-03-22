@@ -1,8 +1,11 @@
 export default {
 	primary: "#00F7FF",
 	primaryDark: "#00D1D9",
+	pageBackground: "#181818",
 	secondary: "#CCFDFF",
 	success: "#4BB543",
+	secondaryText: "#C5C5C5",
+	cardBackground: "#2F2F2F",
 	graydark: "#707070",
 	warning: "#E4B52E",
 	white: "#fff",
