@@ -10,7 +10,7 @@ export const Card = ({ info }: CardProps) => {
 
 
 	return (
-		<div className=" border border-white rounded w-full text-start flex flex-col py-2 pl-4 ">
+		<div className=" border border-white rounded w-full min-w-44 text-start flex flex-col py-2 pl-4 ">
 
 			<p className="text-white text-[16px] mb-1" >
 				{info.title}

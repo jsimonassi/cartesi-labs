@@ -55,11 +55,11 @@ export const Home = () => {
 			</div>
 
 			<div className="bg-radial-gradient w-full" >
-				<div className="pt-20 flex items-start w-3/4">
+				<div className="pt-20 flex items-start lg:w-3/4">
 					<Filter />
-					<div className="flex pl-7 flex-1 flex-col mb-20">
+					<div className="flex pl-7 pr-7 lg:pr-0 flex-1 flex-col mb-20">
 						<Search />
-						<div className="w-full grid grid-cols-2 mt-3 gap-5">
+						<div className="w-full grid lg:grid-cols-2 grid-cols-1 mt-3 gap-5">
 							{Cards.map((card: any, index: number) =>
 								<Card info={card} key={index} />
 							)}
