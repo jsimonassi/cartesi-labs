@@ -24,7 +24,7 @@ module.exports = {
 			// => @media (min-width: 1280px) { ... }
 
 			"2xl": "1536px",
-			"nav": "1780px",  
+			"nav": "1780px",
 		},
 		fontFamily: {
 			sans: ["M PLUS Rounded 1c", "Roboto", "sans-serif"],
@@ -110,8 +110,12 @@ module.exports = {
 			indigo: colors.indigo,
 			purple: colors.violet,
 			pink: colors.pink,
-			success: colors.success
-		}
+			success: colors.success,
+
+		},
+		backgroundImage: {
+			"radial-gradient": "radial-gradient(143.3% 143.3% at 50% -43.3%, #010101 30%,#532E22 100%)",
+		},
 	},
 	plugins: [],
 	safelist: ["bg-secondary", "bg-success", "border-success"]

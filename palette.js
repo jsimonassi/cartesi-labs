@@ -8,10 +8,11 @@ export default {
 	cardBackground: "#2F2F2F",
 	graydark: "#707070",
 	warning: "#E4B52E",
-	white: "white",
+	white: "#fff",
 	blue: "#053B69",
 	blue2: "#043A6B",
 	danger: "#FF021D",
+	inputText: "#C5C5C5",
 	gray: {
 		50: "#f9fafb",
 		100: "#f3f4f6",
