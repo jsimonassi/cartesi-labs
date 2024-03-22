@@ -4,42 +4,8 @@ import { Tutorial } from "../../types/Tutorial";
 import ReadmePreview from "../../components/ReadmePreview";
 import DirectionButtonGroup from "./components/DirectionButtonGroup";
 import AuthorInfos from "./components/AuthorInfos";
-
-const mockTutorial: Tutorial = {
-	title: "Como fazer uma torta de maçã deliciosa",
-	description: "Aprenda passo a passo como fazer uma torta de maçã clássica e deliciosa.",
-	updatedAt: "2024-03-19",
-	approximatedTime: 60,
-	createdBy: "John Doe",
-	steps: [
-		{
-			title: "Preparar os ingredientes",
-			content: "Reúna todos os ingredientes necessários: maçãs, farinha, açúcar, manteiga, etc."
-		},
-		{
-			title: "Preparar a massa",
-			content: "Prepare a massa de torta misturando farinha, manteiga e água até obter uma massa homogênea."
-		},
-		{
-			title: "Preparar o recheio",
-			content: "Descasque as maçãs, corte em fatias finas e misture com açúcar e especiarias a gosto."
-		},
-		{
-			title: "Montar a torta",
-			content: "Forre uma forma com parte da massa, coloque o recheio e cubra com a massa restante. Faça cortes na superfície para permitir a saída do vapor."
-		},
-		{
-			title: "Assar a torta",
-			content: "Leve a torta ao forno preaquecido a 180°C por aproximadamente 40 minutos, ou até que esteja dourada e crocante."
-		},
-		{
-			title: "Servir",
-			content: "Deixe a torta esfriar um pouco antes de servir. Pode ser acompanhada de sorvete ou chantilly."
-		}
-	],
-	address: "avcdesf",
-	likes: 102
-};
+import { useNavigate, useParams } from "react-router";
+import { getTutorials } from "../../services";
 
 //TODO: Move to .env
 const CARTESI_DISCORD_URL = "https://discord.gg/r8jEQCd3";
@@ -48,14 +14,23 @@ const Tutorials = () => {
 
 	const [currentStep, setCurrentStep] = useState(0);
 	const [tutorial, setTutorial] = useState<Tutorial | null>(null);
+	const {tutorialId} = useParams();
+	const navigate = useNavigate();
 
 	useEffect(() => {
-		// Fetch tutorial data from API
-		// setTutorial(response.data);
-		setTutorial(mockTutorial);
+		getTutorials().then((tutorials) => {
+			const tutorial = tutorials.find((tutorial) => tutorial.id === tutorialId);
+			if (!tutorial) {
+				console.error("Tutorial not found");
+				navigate("/");
+				return;
+			}
+			setTutorial(tutorial);
+		}).catch((error) => {
+			console.log("Error: ", error);
+			setTutorial(null);
+		});
 	}, []);
-
-
 
 	return (
 		<div className="fixed top-0 left-0 w-full h-full flex p-12 bg-pageBackground">
