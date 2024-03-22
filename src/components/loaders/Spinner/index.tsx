@@ -21,7 +21,7 @@ const Spinner = (props: IProps) => {
 	} = props;
 
 	const wrapper_classes = {
-		base: "h-full flex items-center justify-center absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2",
+		base: "h-full flex items-center justify-center",
 		withBackground: "",
 		fixed: ""
 	};
