@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Tutorial } from "../../../types/Tutorial";
+import { ToolTags, Tutorial } from "../../../types/Tutorial";
 import TextInput from "../../../components/TextInput";
 import TextInputArea from "../../../components/TextArea";
 import tags from "../../../constants/options";
@@ -12,12 +12,12 @@ const Autocomplete = ({
 	selectedOptions,
 	setSelectedOptions,
 }: {
-  options: string[];
-  selectedOptions: string[];
-  setSelectedOptions: (v: string[]) => void;
+  options: ToolTags[];
+  selectedOptions: ToolTags[];
+  setSelectedOptions: (v: ToolTags[]) => void;
 }) => {
 	const [inputValue, setInputValue] = useState("");
-	const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
+	const [filteredOptions, setFilteredOptions] = useState<ToolTags[]>([]);
 	const ref = useRef<any>(null);
 
 	const handleChange = (event: any) => {
@@ -27,7 +27,9 @@ const Autocomplete = ({
 		// Filtra as opções com base no texto digitado
 		const filtered = options
 			.filter((option) => !selectedOptions.includes(option))
-			.filter((option) => option.toLowerCase().includes(value.toLowerCase()));
+			.filter((option) =>
+				option.name.toLowerCase().includes(value.toLowerCase())
+			);
 		setFilteredOptions(filtered);
 	};
 
@@ -57,9 +59,9 @@ const Autocomplete = ({
 				{selectedOptions.map((option) => (
 					<div
 						className="bg-primary text-black rounded-lg w-fit px-2 py-1 flex gap-2"
-						key={option}
+						key={option.name}
 					>
-						{option}
+						{option.name}
 
 						<span
 							className="cursor-pointer text-red-500"
@@ -95,7 +97,7 @@ const Autocomplete = ({
 							onClick={() => handleSelect(option)}
 							className="border-b border-b-black hover:bg-gray-300"
 						>
-							{option}
+							{option.name}
 						</li>
 					))}
 				</ul>
@@ -191,7 +193,7 @@ const TutorialTitleEdit = ({
 					/>
 				</div>
 				<Autocomplete
-					options={tags.map((x) => x.value)}
+					options={tags}
 					selectedOptions={tutorial.toolTags}
 					setSelectedOptions={(v) => {
 						setTutorial({ ...tutorial, toolTags: v });

@@ -14,8 +14,9 @@ const createEmptyTutorial = () => {
 		title: "",
 		likes: 0,
 		toolTags: [],
-		id: -1,
-		createdBy: "",
+		id: "",
+		updatedAt: "",
+		address: "",
 	};
 
 	return tutorial;

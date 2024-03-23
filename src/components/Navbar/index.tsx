@@ -15,9 +15,6 @@ export const Navbar = () => {
 					<span className=" text-h4 text-white  ">cartesi</span>
 				</a>
 
-				<button className="bg-primary rounded-md px-16 p-1 text-black flex justify-center text-body-lg font-semibold ">
-          ADD TO
-				</button>
 				<button
 					onClick={() => Add()}
 					className="bg-primary rounded-md px-16 p-1 text-black flex justify-center text-body-lg font-semibold "

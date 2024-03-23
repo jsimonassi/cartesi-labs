@@ -2,7 +2,7 @@ import { Tutorial } from "../../types/Tutorial";
 
 const mockTutorials: Tutorial[] = [
 	{
-		id: 1,
+		id: "1",
 		title: "How to Build a Mock Tutorial",
 		description:
       "This tutorial will guide you through creating a mock for a Tutorial object.",
@@ -33,7 +33,7 @@ const mockTutorials: Tutorial[] = [
 		],
 	},
 	{
-		id: 2,
+		id: "2",
 		title: "How to Use Mock Data",
 		description: "Learn how to use mock data effectively in your projects.",
 		updatedAt: "2024-03-22T12:00:00Z",
