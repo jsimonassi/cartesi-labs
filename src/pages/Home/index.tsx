@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Background from "../../assets/images/CartesiImageBg.png";
 import LogoCartesiLabs from "../../assets/images/LogoCartesiLabs.svg";
 import { Filter } from "../../components/Filter";
@@ -7,24 +7,30 @@ import { Card } from "../../components/Card";
 import { Tutorial } from "../../types/Tutorial";
 import Spinner from "../../components/loaders/Spinner";
 import { useNavigate } from "react-router";
-import GetTutorials from "../../services/cartesi/get-tutorials";
+import { useTutorials } from "../../contexts/Tutorial";
+import Paginator from "../../components/Paginator";
 
 export const Home = () => {
 
-	const [currentTutorials, setCurrentTutorials] = useState<Tutorial[] | null>(null);
+	const {currentTutorialsPage, } = useTutorials();
+	const currentTutorials = useMemo(() => {
+		if (currentTutorialsPage) {
+			return currentTutorialsPage.data;
+		}
+		return null;
+	}, [currentTutorialsPage?.page]);
+
 	const navigator = useNavigate();
 
 	useEffect(() => {
-		//TODO: Se for paginado, isso pode ser movido para um contexto
-		const run = async () => {
-			const tutorials = await GetTutorials({ page: 1, limit: 10 });
-			setCurrentTutorials(tutorials);
-		};
-		run();
+		// const run = async () => {
+		// 	const tutorials = await GetTutorials({ page: 1, limit: 10 });
+		// 	setCurrentTutorials(tutorials);
+		// };
+		// run();
 	}, []);
 
 	return (
-
 		<div className="bg-black">
 			<img src={Background} className="absolute inset-0 w-full object-cover h-[260px] " alt="Background Image"></img>
 			{/* <Navbar /> */}
@@ -55,6 +61,7 @@ export const Home = () => {
 									}
 								</div>
 						}
+						<Paginator currentPage={0} totalPages={20} />
 					</div>
 				</div>
 			</div>

@@ -5,6 +5,7 @@ import MarkdownTutorialPreview from "../../components/MarkdownTutorialPreview";
 import DirectionButtonGroup from "./components/DirectionButtonGroup";
 import AuthorInfos from "./components/AuthorInfos";
 import { useNavigate, useParams } from "react-router";
+import { useTutorials } from "../../contexts/Tutorial";
 
 //TODO: Move to .env
 const CARTESI_DISCORD_URL = "https://discord.gg/r8jEQCd3";
@@ -13,8 +14,23 @@ const Tutorials = () => {
 
 	const [currentStep, setCurrentStep] = useState(0);
 	const [tutorial, setTutorial] = useState<Tutorial | null>(null);
+	const { getTutorialById } = useTutorials();
 	const {tutorialId} = useParams();
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		if(tutorialId){
+			getTutorialById(Number(tutorialId))
+				.then((tutorial) => {
+					setTutorial(tutorial);
+				}).catch(() => {
+					navigate("/");
+				});
+		} else{
+			navigate("/");
+		}
+	});
+
 
 	return (
 		<div className="fixed top-0 left-0 w-full h-full flex p-12 bg-pageBackground">

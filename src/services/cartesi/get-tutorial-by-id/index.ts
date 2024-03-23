@@ -3,17 +3,14 @@ import axios from "axios";
 import web3 from "web3";
 import { FunctionsInspectEnum } from "../../../utils/enums";
 import DataSanitizer from "../../../utils/sanitizeData/index";
-import { GetTutorialPageRequest } from "../../../types/Api";
+import { Tutorial } from "../../../types/Tutorial";
 
-async function GetTutorials(data: GetTutorialPageRequest): Promise<any> {
-	const { sanitizeArrayOfObjects } = new DataSanitizer();
-	const localStorareUser = localStorage.getItem("address");
+async function GetTutorialById(id: number): Promise<Tutorial> {
+	const { replaceSpecialCharacters, sanitizeArrayOfObjects } = new DataSanitizer();
 
 	const payload = {
-		function_id: FunctionsInspectEnum.GET_TUTORIALS,
-		address: localStorareUser,
-		page: data.page,
-		limit: data.limit,
+		function_id: FunctionsInspectEnum.GET_TUTORIAL_BY_ADDRESS,
+		tutorialId: id,
 	};
 	const stringToEncode = JSON.stringify(payload);
 	const url = `${process.env.REACT_APP_INSPECT_URL}/${stringToEncode}`;
@@ -27,18 +24,15 @@ async function GetTutorials(data: GetTutorialPageRequest): Promise<any> {
 
 	try {
 		const response = await axios.get(config.url);
-		if (response.data?.reports?.length === 0) {
-			return [];
-		}
 		const parsedData = response.data.reports[0].payload;
 		const regularString = web3.utils.hexToAscii(parsedData);
-		const arrayOfString = regularString.split("\n");
-		const arrayOfObjects = sanitizeArrayOfObjects(arrayOfString);
-
-		return arrayOfObjects.length > 0 ? arrayOfObjects[0] : [];
+		//TODO: Validate backend response
+        
+		// return Promise.resolve(regularString as Tutorial);
+		return Promise.reject("Not implemented");
 	} catch (error) {
 		return Promise.reject(error);
 	}
 }
 
-export default GetTutorials;
+export default GetTutorialById;
