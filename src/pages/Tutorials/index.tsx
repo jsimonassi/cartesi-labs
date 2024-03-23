@@ -6,6 +6,7 @@ import DirectionButtonGroup from "./components/DirectionButtonGroup";
 import AuthorInfos from "./components/AuthorInfos";
 import { useNavigate, useParams } from "react-router";
 import { getTutorials } from "../../services";
+import TextEditor from "../../components/TextEditor";
 
 //TODO: Move to .env
 const CARTESI_DISCORD_URL = "https://discord.gg/r8jEQCd3";
@@ -61,7 +62,7 @@ const Tutorials = () => {
 						</p>
 					</div>
 				) : null}
-				<MarkdownTutorialPreview source="" />
+				<MarkdownTutorialPreview source="#Titutlo" />
 				<DirectionButtonGroup
 					onBack={() => setCurrentStep(currentStep - 1)}
 					onNext={() => setCurrentStep(currentStep + 1)}

@@ -203,7 +203,7 @@ const TutorialTitleEdit = ({
 				<BaseBtn
 					className="w-44 h-7 text-label-sm !font-700 flex items-center justify-center"
 					onClick={() => {
-						if (!validateTutorial(tutorial)) setPage(AddTutorialPage.Steps);
+						if (validateTutorial(tutorial)) setPage(AddTutorialPage.Steps);
 					}}
 				>
           Start creation
