@@ -1,14 +1,13 @@
 export interface Tutorial {
-  id: number;
+  id: string;
   title: string;
   description: string;
-  updatedAt?: string;
+  updatedAt: string;
   approximatedTime: number;
   steps: TutorialStep[];
-  address?: string;
+  address: string;
   likes: number;
-  createdBy: string;
-  toolTags: string[];
+  toolTags: ToolTags[];
 }
 
 export interface TutorialStep {

@@ -24,8 +24,13 @@ const mockTutorials: Tutorial[] = [
 			},
 		],
 		likes: 10,
-		createdBy: "John Doe",
-		toolTags: ["typescript", "mocking"],
+		address: "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+		toolTags: [
+			{
+				name: "typescript",
+				icon: "typescript-icon.svg",
+			},
+		],
 	},
 	{
 		id: 2,
@@ -50,8 +55,17 @@ const mockTutorials: Tutorial[] = [
 			},
 		],
 		likes: 8,
-		createdBy: "Jane Smith",
-		toolTags: ["javascript", "testing"],
+		address: "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+		toolTags: [
+			{
+				name: "javascript",
+				icon: "javascript-icon.svg",
+			},
+			{
+				name: "testing",
+				icon: "testing-icon.svg",
+			},
+		],
 	},
 ];
 

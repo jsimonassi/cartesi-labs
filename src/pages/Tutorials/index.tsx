@@ -5,8 +5,6 @@ import MarkdownTutorialPreview from "../../components/MarkdownTutorialPreview";
 import DirectionButtonGroup from "./components/DirectionButtonGroup";
 import AuthorInfos from "./components/AuthorInfos";
 import { useNavigate, useParams } from "react-router";
-import { getTutorials } from "../../services";
-import TextEditor from "../../components/TextEditor";
 
 //TODO: Move to .env
 const CARTESI_DISCORD_URL = "https://discord.gg/r8jEQCd3";
@@ -17,25 +15,6 @@ const Tutorials = () => {
 	const { tutorialId } = useParams();
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		getTutorials()
-			.then((tutorials) => {
-				const tutorial = tutorials.find(
-					(tutorial) => String(tutorial.id) === tutorialId
-				);
-				if (!tutorial) {
-					console.error("Tutorial not found");
-					navigate("/");
-					return;
-				}
-				setTutorial(tutorial);
-			})
-			.catch((error) => {
-				console.log("Error: ", error);
-				setTutorial(null);
-			});
-	}, []);
-
 	return (
 		<div className="fixed top-0 left-0 w-full h-full flex p-12 bg-pageBackground">
 			<div className="flex flex-col w-1/4 justify-center">
@@ -45,7 +24,6 @@ const Tutorials = () => {
 					steps={tutorial?.steps ?? []}
 				/>
 				<AuthorInfos
-					createdBy={tutorial?.createdBy ?? ""}
 					lastUpdated={tutorial?.updatedAt ?? ""}
 					tutorialDuration={tutorial?.approximatedTime ?? 0}
 					onReportProblem={() => (location.href = CARTESI_DISCORD_URL)}

@@ -1,24 +1,31 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Web3 from "web3";
-import { EtherPortal__factory } from "@cartesi/rollups";
 import { FunctionsAdvanceEnum } from "../../../utils/enums";
+import { Tutorial } from "../../../types/Tutorial";
+import { IInputBox__factory } from "@cartesi/rollups/";
 
 
-async function AddTutorial(data: any): Promise<void> {
+async function AddTutorial(data: Tutorial): Promise<void> {
 	try {
-		const localStorareUser = localStorage.getItem("address") || "";
+		const web3 = new Web3((window as any).ethereum);
+		const inputContract = new web3.eth.Contract(
+			IInputBox__factory.abi,
+			process.env.REACT_APP_INPUTBOX_ADDRESS as string
+		);
+		const localStorareUser = localStorage.getItem("address") || "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266";
 		if (!localStorareUser) {
 			return;
 		}
-		const payload = {
+		const input = {
 			function_id: FunctionsAdvanceEnum.CREATE_TUTORIAL,
 			address: localStorareUser,
 			data: data,
 		};
-		const payloadString = JSON.stringify(payload);
-		const web3 = new Web3(((window as any).ethereum));
-		const ethersContract = new web3.eth.Contract(EtherPortal__factory.abi, process.env.ETHER_PORTAL_ADDRESS);
-		await ethersContract.methods.depositEther(process.env.DAPP_ADDRESS as string, "0x").send({ from: localStorareUser, value: payloadString });
+		const inputString = JSON.stringify(input);
+		const inputHex = web3.utils.utf8ToHex(inputString);
+		await inputContract.methods
+			.addInput(process.env.REACT_APP_DAPP_ADDRESS as string, inputHex)
+			.send({ from: localStorareUser });
 	} catch (error) {
 		console.error("Error occurred while sending input:", error);
 	}
