@@ -51,6 +51,8 @@ const Autocomplete = ({
 
 	return (
 		<div className="w-full mb-20">
+			<label className="text-white text-caption">Tools tags: </label>
+
 			<div className="w-full border border-primary py-2 px-2 rounded-lg flex flex-wrap gap-2">
 				{selectedOptions.map((option) => (
 					<div
@@ -102,6 +104,30 @@ const Autocomplete = ({
 			)}
 		</div>
 	);
+};
+
+const validateTutorial = (tutorial: Tutorial) => {
+	if (!tutorial.title) {
+		alert("Tutorial title cannot be empty.");
+		return false;
+	}
+
+	if (!tutorial.description) {
+		alert("Description title cannot be empty.");
+		return false;
+	}
+
+	if (!tutorial.description) {
+		alert("Description title cannot be empty.");
+		return false;
+	}
+
+	if (tutorial.approximatedTime <= 0) {
+		alert("Time must be positive");
+		return false;
+	}
+
+	return true;
 };
 
 const TutorialTitleEdit = ({
@@ -160,17 +186,8 @@ const TutorialTitleEdit = ({
 						errorText="Value must be positive"
 						validator={tutorial.approximatedTime <= 0}
 						type="number"
-						tooltip="exemplo"
-						className="w-[156px]"
-					/>
-					<TextInput
-						label="Author's name: "
-						value={tutorial.createdBy}
-						placeholder="Creating a dApp with sunodo and Python"
-						setValue={(v) => {
-							setTutorial({ ...tutorial, createdBy: v });
-						}}
-						className="flex-1"
+						tooltip="Quantity of minutes to read the tutorial"
+						className="w-full"
 					/>
 				</div>
 				<Autocomplete
@@ -185,7 +202,9 @@ const TutorialTitleEdit = ({
 			<div className="self-center flex flex-col gap-4 mb-20">
 				<BaseBtn
 					className="w-44 h-7 text-label-sm !font-700 flex items-center justify-center"
-					onClick={() => setPage(AddTutorialPage.Steps)}
+					onClick={() => {
+						if (!validateTutorial(tutorial)) setPage(AddTutorialPage.Steps);
+					}}
 				>
           Start creation
 				</BaseBtn>

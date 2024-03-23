@@ -4,6 +4,7 @@ import LogoCartesiLabs from "../../assets/images/LogoCartesiLabs.svg";
 import { Navbar } from "../../components/Navbar";
 import { Tutorial, TutorialStep } from "../../types/Tutorial";
 import TutorialTitleEdit from "./TutorialTitle";
+import TutorialSteps from "./TutorialSteps";
 
 const createEmptyTutorial = () => {
 	const tutorial: Tutorial = {
@@ -20,15 +21,6 @@ const createEmptyTutorial = () => {
 	return tutorial;
 };
 
-const createEmptyStep = () => {
-	const step: TutorialStep = {
-		content: "",
-		title: "",
-	};
-
-	return step;
-};
-
 export enum AddTutorialPage {
   Info,
   Steps,
@@ -37,8 +29,6 @@ export enum AddTutorialPage {
 const AddTutorials = () => {
 	const [tutorial, setTutorial] = useState<Tutorial>(createEmptyTutorial());
 	const [steps, setSteps] = useState<TutorialStep[]>([]);
-	const [selectedTags, setSelectedTags] = useState([]);
-
 	const [page, setPage] = useState(AddTutorialPage.Info);
 
 	return (
@@ -52,7 +42,11 @@ const AddTutorials = () => {
 						setPage={setPage}
 					/>
 				) : (
-					<></>
+					<TutorialSteps
+						tutorial={tutorial}
+						steps={steps}
+						setSteps={setSteps}
+					/>
 				)}
 			</div>
 		</div>

@@ -12,6 +12,7 @@ type TextInputParms = {
   className?: string;
   type?: "number" | "email" | "text";
   tooltip?: string;
+  max?: number;
 };
 
 const TextInput = ({
@@ -24,6 +25,7 @@ const TextInput = ({
 	className,
 	type,
 	tooltip,
+	max,
 }: TextInputParms) => {
 	const [change, setChange] = useState(false);
 
@@ -31,9 +33,9 @@ const TextInput = ({
 		<>
 			<div className={`flex flex-col gap-[2px] ${className}`}>
 				<label className="text-white text-caption">{label}</label>
-				<div className="w-full relative">
+				<div className="w-full relative h-full">
 					<input
-						className={`border py-1 pl-2 w-full rounded-lg border-primary bg-transparent text-label-md text-white ${
+						className={`border py-1 pl-2 w-full h-full rounded-lg border-primary bg-transparent text-label-md text-white ${
 							tooltip ? "pr-8" : "pr-2"
 						}`}
 						value={value}
@@ -43,6 +45,7 @@ const TextInput = ({
 						}}
 						placeholder={placeholder ?? ""}
 						type={type ?? "text"}
+						maxLength={max}
 					/>
 
 					{tooltip ? (
