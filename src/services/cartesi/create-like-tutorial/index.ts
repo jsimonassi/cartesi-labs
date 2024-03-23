@@ -4,7 +4,7 @@ import { EtherPortal__factory } from "@cartesi/rollups";
 import { FunctionsAdvanceEnum } from "../../../utils/enums";
 
 
-async function AddLikeTutorial(data: any): Promise<void> {
+async function AddLikeTutorial(): Promise<void> {
 	try {
 		const localStorareUser = localStorage.getItem("address") || "";
 		if (!localStorareUser) {
@@ -13,7 +13,6 @@ async function AddLikeTutorial(data: any): Promise<void> {
 		const payload = {
 			function_id: FunctionsAdvanceEnum.CREATE_LIKE_TUTORIAL,
 			address: localStorareUser,
-			data: data,
 		};
 		const payloadString = JSON.stringify(payload);
 		const web3 = new Web3(((window as any).ethereum));
