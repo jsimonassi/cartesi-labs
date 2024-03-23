@@ -1,7 +1,7 @@
 export interface PagedTutorialResponse {
-    currentPage: number,
+    page: number,
     totalPages: number,
-    tutorials: Tutorial[]
+    data: Tutorial[]
 }
 
 export interface Tutorial {

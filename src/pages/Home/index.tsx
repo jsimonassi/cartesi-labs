@@ -8,16 +8,17 @@ import { Tutorial } from "../../types/Tutorial";
 import Spinner from "../../components/loaders/Spinner";
 import { useNavigate } from "react-router";
 import { useTutorials } from "../../contexts/Tutorial";
+import Paginator from "../../components/Paginator";
 
 export const Home = () => {
 
 	const {currentTutorialsPage, } = useTutorials();
 	const currentTutorials = useMemo(() => {
 		if (currentTutorialsPage) {
-			return currentTutorialsPage.tutorials;
+			return currentTutorialsPage.data;
 		}
 		return null;
-	}, [currentTutorialsPage?.currentPage]);
+	}, [currentTutorialsPage?.page]);
 
 	const navigator = useNavigate();
 
@@ -60,6 +61,7 @@ export const Home = () => {
 									}
 								</div>
 						}
+						<Paginator currentPage={0} totalPages={20} />
 					</div>
 				</div>
 			</div>

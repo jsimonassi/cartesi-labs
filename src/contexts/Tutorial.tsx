@@ -25,7 +25,7 @@ const TutorialsProvider: React.FC<TutorialsProviderProps> = ({ children }) => {
 	const onRequestNextPage = () => {
 		let nextPage = 0;
 		if(currentTutorialsPage){
-			nextPage = currentTutorialsPage.currentPage + 1;
+			nextPage = currentTutorialsPage.page + 1;
 		}
 		setCurrentTutorialsPage(null);
 		GetTutorials({ page: nextPage, limit: PAGE_SIZE })
