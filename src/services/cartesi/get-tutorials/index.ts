@@ -5,7 +5,7 @@ import { FunctionsInspectEnum } from "../../../utils/enums";
 import DataSanitizer from "../../../utils/sanitizeData/index";
 
 async function GetTutorials(data: any): Promise<any> {
-	const { replaceSpecialCharacters, sanitizeArrayOfObjects } = new DataSanitizer();
+	const { sanitizeArrayOfObjects } = new DataSanitizer();
 	const localStorareUser = localStorage.getItem("address");
 
 	const payload = {
@@ -26,13 +26,15 @@ async function GetTutorials(data: any): Promise<any> {
 
 	try {
 		const response = await axios.get(config.url);
+		if (response.data?.reports?.length === 0) {
+			return [];
+		}
 		const parsedData = response.data.reports[0].payload;
 		const regularString = web3.utils.hexToAscii(parsedData);
-		let arrayOfString = regularString.split("\n");
-		arrayOfString = replaceSpecialCharacters(arrayOfString);
+		const arrayOfString = regularString.split("\n");
 		const arrayOfObjects = sanitizeArrayOfObjects(arrayOfString);
 
-		return arrayOfObjects;
+		return arrayOfObjects.length > 0 ? arrayOfObjects[0] : [];
 	} catch (error) {
 		return null;
 	}
