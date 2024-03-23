@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Navbar } from "../../components/Navbar";
 import Background from "../../assets/images/CartesiImageBg.png";
 import LogoCartesiLabs from "../../assets/images/LogoCartesiLabs.svg";
 import { Filter } from "../../components/Filter";
