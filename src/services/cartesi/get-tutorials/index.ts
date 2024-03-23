@@ -2,7 +2,7 @@
 import axios from "axios";
 import web3 from "web3";
 import { FunctionsInspectEnum } from "../../../utils/enums";
-import DataSanitizer from "../../../helper/sanitizeData/index";
+import DataSanitizer from "../../../utils/sanitizeData/index";
 
 async function GetTutorials(data: any): Promise<any> {
 	const { replaceSpecialCharacters, sanitizeArrayOfObjects } = new DataSanitizer();
