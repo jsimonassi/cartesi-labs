@@ -8,7 +8,6 @@ import Tutorials from "../pages/Tutorials";
 import { Navbar } from "../components/Navbar";
 
 const Router = () => {
-
 	return (
 		<BrowserRouter>
 			<Navbar />

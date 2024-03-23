@@ -1,0 +1,204 @@
+import React, { useEffect, useRef, useState } from "react";
+import { Tutorial } from "../../../types/Tutorial";
+import TextInput from "../../../components/TextInput";
+import TextInputArea from "../../../components/TextArea";
+import tags from "../../../constants/options";
+import BaseBtn from "../../../components/buttons/BaseBtn";
+import { useNavigate } from "react-router-dom";
+import { AddTutorialPage } from "..";
+
+const Autocomplete = ({
+	options,
+	selectedOptions,
+	setSelectedOptions,
+}: {
+  options: string[];
+  selectedOptions: string[];
+  setSelectedOptions: (v: string[]) => void;
+}) => {
+	const [inputValue, setInputValue] = useState("");
+	const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
+	const ref = useRef<any>(null);
+
+	const handleChange = (event: any) => {
+		const { value } = event.target;
+		setInputValue(value);
+
+		// Filtra as opções com base no texto digitado
+		const filtered = options
+			.filter((option) => !selectedOptions.includes(option))
+			.filter((option) => option.toLowerCase().includes(value.toLowerCase()));
+		setFilteredOptions(filtered);
+	};
+
+	const handleSelect = (value: any) => {
+		setInputValue("");
+		setSelectedOptions([...selectedOptions, value]);
+		setFilteredOptions([]);
+	};
+
+	useEffect(() => {
+		function handleClickOutside(event: any) {
+			if (ref.current && !ref.current.contains(event.target)) {
+				setFilteredOptions([]);
+			}
+		}
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [ref]);
+
+	return (
+		<div className="w-full mb-20">
+			<div className="w-full border border-primary py-2 px-2 rounded-lg flex flex-wrap gap-2">
+				{selectedOptions.map((option) => (
+					<div
+						className="bg-primary text-black rounded-lg w-fit px-2 py-1 flex gap-2"
+						key={option}
+					>
+						{option}
+
+						<span
+							className="cursor-pointer text-red-500"
+							onClick={() => {
+								setSelectedOptions(selectedOptions.filter((x) => x !== option));
+							}}
+						>
+              X
+						</span>
+					</div>
+				))}
+
+				<input
+					type="text"
+					value={inputValue}
+					onChange={handleChange}
+					className="bg-transparent text-white"
+					onFocus={(e) =>
+						setFilteredOptions(
+							options.filter((option) => !selectedOptions.includes(option))
+						)
+					}
+				/>
+			</div>
+			{filteredOptions.length > 0 ? (
+				<ul
+					className="bg-white rounded-lg border-t border-l border-r mb-20 max-h-[120px] overflow-y-auto"
+					ref={ref}
+				>
+					{filteredOptions.map((option, index) => (
+						<li
+							key={`$option_${index}`}
+							onClick={() => handleSelect(option)}
+							className="border-b border-b-black hover:bg-gray-300"
+						>
+							{option}
+						</li>
+					))}
+				</ul>
+			) : (
+				<></>
+			)}
+		</div>
+	);
+};
+
+const TutorialTitleEdit = ({
+	tutorial,
+	setTutorial,
+	setPage,
+}: {
+  tutorial: Tutorial;
+  setTutorial: any;
+  setPage: any;
+}) => {
+	const navigator = useNavigate();
+
+	return (
+		<div className="flex flex-col w-screen mt-36">
+			<div className="flex flex-col gap-[15px]">
+				<h1 className="text-white font-bold text-h6 text-center">
+          Create your tutorial
+				</h1>
+				<p className="text-center text-inputText text-body-sm">
+          Write a tutorial and help the cartesi <br /> community in integrating
+          new technologies
+				</p>
+			</div>
+			<div className="w-[521px] self-center mt-8 flex flex-col gap-4">
+				<TextInput
+					label="Tutorial name: "
+					value={tutorial.title}
+					placeholder="Creating a dApp with sunodo and Python"
+					setValue={(v) => {
+						setTutorial({ ...tutorial, title: v });
+					}}
+					errorText="Title cannot be empty"
+					validator={!tutorial.title}
+				/>
+
+				<TextInputArea
+					label="Description: "
+					value={tutorial.description}
+					placeholder="Creating a decentralized application (dApp) with Sunodo and Python involves utilizing Sunodo's blockchain platform for smart contract development and..."
+					setValue={(v) => {
+						setTutorial({ ...tutorial, description: v });
+					}}
+					errorText="Description cannot be empty"
+					validator={!tutorial.description}
+					className="h-28"
+				/>
+				<div className="flex gap-4">
+					<TextInput
+						label="Aproximate time (minutes): "
+						value={tutorial.approximatedTime}
+						placeholder="90"
+						setValue={(v) => {
+							setTutorial({ ...tutorial, approximatedTime: v });
+						}}
+						errorText="Value must be positive"
+						validator={tutorial.approximatedTime <= 0}
+						type="number"
+						tooltip="exemplo"
+						className="w-[156px]"
+					/>
+					<TextInput
+						label="Author's name: "
+						value={tutorial.createdBy}
+						placeholder="Creating a dApp with sunodo and Python"
+						setValue={(v) => {
+							setTutorial({ ...tutorial, createdBy: v });
+						}}
+						className="flex-1"
+					/>
+				</div>
+				<Autocomplete
+					options={tags.map((x) => x.value)}
+					selectedOptions={tutorial.toolTags}
+					setSelectedOptions={(v) => {
+						setTutorial({ ...tutorial, toolTags: v });
+					}}
+				/>
+			</div>
+
+			<div className="self-center flex flex-col gap-4 mb-20">
+				<BaseBtn
+					className="w-44 h-7 text-label-sm !font-700 flex items-center justify-center"
+					onClick={() => setPage(AddTutorialPage.Steps)}
+				>
+          Start creation
+				</BaseBtn>
+				<BaseBtn
+					className="w-44 h-7 text-label-sm font-bold flex items-center justify-center"
+					variant="outline"
+					onClick={() => navigator("/")}
+				>
+          Back to the home
+				</BaseBtn>
+			</div>
+		</div>
+	);
+};
+
+export default TutorialTitleEdit;

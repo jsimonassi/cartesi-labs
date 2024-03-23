@@ -111,6 +111,7 @@ module.exports = {
 			purple: colors.violet,
 			pink: colors.pink,
 			success: colors.success,
+			"tutorial-background": colors.tutorialBackground
 
 		},
 		backgroundImage: {

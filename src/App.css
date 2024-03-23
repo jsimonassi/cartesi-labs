@@ -31,6 +31,19 @@
 input::placeholder {
     color: white;
     opacity: 1;
+}
+
+input::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+
+  [list]::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+
+textarea::placeholder {
+    color: white;
+    opacity: 1;
     /* Firefox /
 }
 
