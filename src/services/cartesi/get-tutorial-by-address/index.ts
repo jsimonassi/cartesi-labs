@@ -13,7 +13,7 @@ async function GetTutorialsByAddress(): Promise<any> {
 		address: localStorareUser,
 	};
 	const stringToEncode = JSON.stringify(payload);
-	const url = `${process.env.INSPECT_URL}/${stringToEncode}`;
+	const url = `${process.env.REACT_APP_INSPECT_URL}/${stringToEncode}`;
 
 	const config = {
 		url: url,

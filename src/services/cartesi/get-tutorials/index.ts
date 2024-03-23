@@ -15,7 +15,7 @@ async function GetTutorials(data: any): Promise<any> {
 		limit: data.limit,
 	};
 	const stringToEncode = JSON.stringify(payload);
-	const url = `${process.env.INSPECT_URL}/${stringToEncode}`;
+	const url = `${process.env.REACT_APP_INSPECT_URL}/${stringToEncode}`;
 
 	const config = {
 		url: url,

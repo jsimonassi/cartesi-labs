@@ -5,10 +5,9 @@ export interface Tutorial {
     updatedAt: string,
     approximatedTime: number,
     steps: TutorialStep[],
-    address?: string,
+    address: string,
     likes: number,
-    createdBy: string,
-    toolTags: string[],
+    toolTags: ToolTags[],
 }
 
 export interface TutorialStep {

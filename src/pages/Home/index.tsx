@@ -5,9 +5,9 @@ import { Filter } from "../../components/Filter";
 import { Search } from "../../components/Search";
 import { Card } from "../../components/Card";
 import { Tutorial } from "../../types/Tutorial";
-import { getTutorials } from "../../services";
 import Spinner from "../../components/loaders/Spinner";
 import { useNavigate } from "react-router";
+import GetTutorials from "../../services/cartesi/get-tutorials";
 
 export const Home = () => {
 
@@ -16,12 +16,12 @@ export const Home = () => {
 
 	useEffect(() => {
 		//TODO: Se for paginado, isso pode ser movido para um contexto
-		getTutorials().then((tutorials) => {
+		const run = async () => {
+			debugger;
+			const tutorials = await GetTutorials({ page: 1, limit: 10 });
 			setCurrentTutorials(tutorials);
-		}).catch((error) => {
-			console.log("Error: ", error);
-			setCurrentTutorials([]);
-		});
+		};
+		run();
 	}, []);
 
 	return (

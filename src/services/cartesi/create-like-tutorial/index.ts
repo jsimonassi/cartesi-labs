@@ -16,8 +16,8 @@ async function AddLikeTutorial(): Promise<void> {
 		};
 		const payloadString = JSON.stringify(payload);
 		const web3 = new Web3(((window as any).ethereum));
-		const ethersContract = new web3.eth.Contract(EtherPortal__factory.abi, process.env.ETHER_PORTAL_ADDRESS);
-		await ethersContract.methods.depositEther(process.env.DAPP_ADDRESS as string, "0x").send({ from: localStorareUser, value: payloadString });
+		const ethersContract = new web3.eth.Contract(EtherPortal__factory.abi, process.env.REACT_APP_ETHER_PORTAL_ADDRESS);
+		await ethersContract.methods.depositEther(process.env.REACT_APP_DAPP_ADDRESS as string, "0x").send({ from: localStorareUser, value: payloadString });
 	} catch (error) {
 		console.error("Error occurred while sending input:", error);
 	}
