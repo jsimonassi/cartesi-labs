@@ -6,6 +6,7 @@ export enum FunctionsAdvanceEnum {
 export enum FunctionsInspectEnum {
     GET_TUTORIALS = 1,
     GET_TUTORIAL_BY_ADDRESS = 2,
+    GET_TUTORIAL_BY_ID = 3,
 }
 
 

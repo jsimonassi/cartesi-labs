@@ -17,7 +17,6 @@ export const Home = () => {
 	useEffect(() => {
 		//TODO: Se for paginado, isso pode ser movido para um contexto
 		const run = async () => {
-			debugger;
 			const tutorials = await GetTutorials({ page: 1, limit: 10 });
 			setCurrentTutorials(tutorials);
 		};
