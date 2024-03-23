@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import StepSelectorGroup from "./components/StepSelectorGroup";
 import { Tutorial } from "../../types/Tutorial";
-import ReadmePreview from "../../components/ReadmePreview";
+import MarkdownTutorialPreview from "../../components/MarkdownTutorialPreview";
 import DirectionButtonGroup from "./components/DirectionButtonGroup";
 import AuthorInfos from "./components/AuthorInfos";
 import { useNavigate, useParams } from "react-router";
@@ -61,7 +61,7 @@ const Tutorials = () => {
 						</p>
 					</div>
 				) : null}
-				<ReadmePreview />
+				<MarkdownTutorialPreview source="" />
 				<DirectionButtonGroup
 					onBack={() => setCurrentStep(currentStep - 1)}
 					onNext={() => setCurrentStep(currentStep + 1)}
