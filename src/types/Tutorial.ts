@@ -1,3 +1,9 @@
+export interface PagedTutorialResponse {
+    currentPage: number,
+    totalPages: number,
+    tutorials: Tutorial[]
+}
+
 export interface Tutorial {
     id: string,
     title: string,
