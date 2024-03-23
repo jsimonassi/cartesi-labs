@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 import web3 from "web3";
 import { FunctionsInspectEnum } from "../../../utils/enums";

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 class DataSanitizer {
 	replaceSpecialCharacters(data: any) {
 		const sanitizedData = JSON.parse(JSON.stringify(data).replace(/\\/g, ""));

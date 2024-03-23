@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Web3 from "web3";
 import { EtherPortal__factory } from "@cartesi/rollups";
 import { FunctionsAdvanceEnum } from "../../../utils/enums";
