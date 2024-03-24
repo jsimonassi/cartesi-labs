@@ -19,6 +19,8 @@ export const Navbar = () => {
 				.then((res: string[]) => {
 					localStorage.setItem(WALLET_CACHE_KEY, res[0]);
 					navigate("/add-tutorials");
+				}).catch((err: any) => {
+					console.log("Error: ", err);
 				});
 		}
 	};

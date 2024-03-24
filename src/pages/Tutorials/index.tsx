@@ -7,8 +7,6 @@ import AuthorInfos from "./components/AuthorInfos";
 import { useNavigate, useParams } from "react-router";
 import { useTutorials } from "../../contexts/Tutorial";
 
-//TODO: Move to .env
-const CARTESI_DISCORD_URL = "https://discord.gg/r8jEQCd3";
 
 const Tutorials = () => {
 	const [currentStep, setCurrentStep] = useState(0);
@@ -42,7 +40,7 @@ const Tutorials = () => {
 				<AuthorInfos
 					lastUpdated={tutorial?.updatedAt ?? ""}
 					tutorialDuration={tutorial?.approximatedTime ?? 0}
-					onReportProblem={() => (location.href = CARTESI_DISCORD_URL)}
+					onReportProblem={() => (location.href = process.env.REACT_APP_CARTESI_DISCORD_URL ?? "/")}
 				/>
 			</div>
 			<div className=" w-3/4 flex-col">

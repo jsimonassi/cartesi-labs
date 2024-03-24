@@ -2,12 +2,14 @@ import React, { createContext, useContext, useState } from "react";
 import { PagedTutorialResponse, Tutorial } from "../types/Tutorial";
 import getTutorials from "../services/cartesi/get-tutorials";
 import GetTutorialById from "../services/cartesi/get-tutorial-by-id";
+import addTutorial from "../services/cartesi/create-tutorial";
 
 interface TutorialsContextData {
     currentTutorialsPage: PagedTutorialResponse | null;
     onRequestNextPage: () => void;
     onRequestPreviousPage: () => void;
     getTutorialById: (id: number) => Promise<Tutorial>;
+	saveTutorial: (tutorial: Tutorial) => Promise<void>;
 }
 
 interface TutorialsProviderProps {
@@ -42,8 +44,11 @@ const TutorialsProvider: React.FC<TutorialsProviderProps> = ({ children }) => {
 	};
 
 	const getTutorialById = (id: number) => {
-		//TODO: Implementar lógica para obtener tutorial por id
 		return GetTutorialById(id);
+	};
+
+	const saveTutorial = (tutorial: Tutorial) => {
+		return addTutorial(tutorial);
 	};
 
 	return (
@@ -52,7 +57,8 @@ const TutorialsProvider: React.FC<TutorialsProviderProps> = ({ children }) => {
 				currentTutorialsPage,
 				onRequestNextPage,
 				onRequestPreviousPage,
-				getTutorialById
+				getTutorialById,
+				saveTutorial
 			}}>
 			{children}
 		</TutorialsContext.Provider>

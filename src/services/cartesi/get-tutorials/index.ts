@@ -5,6 +5,7 @@ import { FunctionsInspectEnum } from "../../../utils/enums";
 import DataSanitizer from "../../../utils/sanitizeData/index";
 import { GetTutorialPageRequest } from "../../../types/Api";
 import { PagedTutorialResponse } from "../../../types/Tutorial";
+import { parseApiPageToAppPage } from "./parser";
 
 async function getTutorials(data: GetTutorialPageRequest): Promise<PagedTutorialResponse> {
 	const { sanitizeArrayOfObjects } = new DataSanitizer();
@@ -35,9 +36,10 @@ async function getTutorials(data: GetTutorialPageRequest): Promise<PagedTutorial
 		const regularString = web3.utils.hexToAscii(parsedData);
 		const arrayOfString = regularString.split("\n");
 		const arrayOfObjects = sanitizeArrayOfObjects(arrayOfString);
-		return arrayOfObjects.length > 0 && arrayOfObjects[0].data.length > 0 ? 
-			arrayOfObjects[0] : 
-			Promise.resolve({data: [], total: 0, page: 0, limit: 0});
+		console.log("Xablau: ", arrayOfObjects);
+		return arrayOfObjects.length > 0 && Object.keys(arrayOfObjects[0].data).length > 0 ? 
+			parseApiPageToAppPage(arrayOfObjects[0]) : 
+			Promise.resolve({data: [], total: 0, page: 0, limit: 0, totalPages: 0});
 	} catch (error) {
 		return Promise.reject(error);
 	}
