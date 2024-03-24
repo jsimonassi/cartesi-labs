@@ -48,7 +48,7 @@ export const Home = () => {
 				<img
 					src={LogoCartesiLabs}
 					alt="Logo Cartesi Labs"
-					className="max-w-[232px] w-full"
+					className="max-w-[330px] w-full"
 				/>
 			</div>
 

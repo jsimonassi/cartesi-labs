@@ -11,3 +11,7 @@ body {
 code {
     font-family: 'Inter';
 }
+
+html {
+    background-color: black;
+}
