@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Background from "../../assets/images/CartesiImageBg.png";
 import LogoCartesiLabs from "../../assets/images/LogoCartesiLabs.svg";
 import { Filter } from "../../components/Filter";
@@ -9,10 +9,13 @@ import Spinner from "../../components/loaders/Spinner";
 import { useNavigate } from "react-router";
 import { useTutorials } from "../../contexts/Tutorial";
 import Paginator from "../../components/Paginator";
+import _debounce from "lodash/debounce";
+
 
 export const Home = () => {
 
-	const {currentTutorialsPage, onRequestNextPage } = useTutorials();
+	const [searchKey, setSearchKey] = useState<string>("");
+	const {currentTutorialsPage, onRequestNextPage, getTutorialsByName } = useTutorials();
 	const currentTutorials = useMemo(() => {
 		if (currentTutorialsPage) {
 			return currentTutorialsPage.data;
@@ -25,6 +28,13 @@ export const Home = () => {
 	useEffect(() => {
 		onRequestNextPage();
 	}, []);
+
+
+	const handleDebounceFn = (inputValue: string) => {
+		getTutorialsByName(inputValue);
+	};
+
+	const debounceFn = useCallback(_debounce(handleDebounceFn, 500), []);
 
 	return (
 		<div className="bg-black">
@@ -46,7 +56,10 @@ export const Home = () => {
 				<div className="pt-20 flex items-start lg:w-3/4">
 					<Filter />
 					<div className="flex pl-7 pr-7 lg:pr-0 flex-1 flex-col mb-20">
-						<Search />
+						<Search value={searchKey} onChange={(text: string) => {
+							setSearchKey(text);
+							debounceFn(text);
+						}} />
 						{
 							currentTutorials == null ?
 								<div className="w-full mt-8 flex justify-center items-center">

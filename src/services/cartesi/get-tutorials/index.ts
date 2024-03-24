@@ -7,16 +7,20 @@ import { GetTutorialPageRequest } from "../../../types/Api";
 import { PagedTutorialResponse } from "../../../types/Tutorial";
 import { parseApiPageToAppPage } from "./parser";
 
-async function getTutorials(data: GetTutorialPageRequest): Promise<PagedTutorialResponse> {
+async function getTutorials(data: GetTutorialPageRequest, name: string | null = null): Promise<PagedTutorialResponse> {
 	const { sanitizeArrayOfObjects } = new DataSanitizer();
-	const localStorareUser = localStorage.getItem("address");
+	const localStorageUser = localStorage.getItem("address");
 
-	const payload = {
+	const payload: any = {
 		function_id: FunctionsInspectEnum.GET_TUTORIALS,
-		address: localStorareUser,
+		address: localStorageUser,
 		page: data.page,
 		limit: data.limit,
 	};
+
+	if(name){
+		payload.name = name;
+	}
 	const stringToEncode = JSON.stringify(payload);
 	const url = `${process.env.REACT_APP_INSPECT_URL}/${stringToEncode}`;
 
@@ -32,11 +36,12 @@ async function getTutorials(data: GetTutorialPageRequest): Promise<PagedTutorial
 		if (response.data?.reports?.length === 0) {
 			Promise.resolve({data: [], total: 0, page: 0, limit: 0});
 		}
+		// debugger;
 		const parsedData = response.data.reports[0].payload;
 		const regularString = web3.utils.hexToAscii(parsedData);
 		const arrayOfString = regularString.split("\n");
 		const arrayOfObjects = sanitizeArrayOfObjects(arrayOfString);
-		console.log("Xablau: ", arrayOfObjects);
+		console.log("OPAA   A: ", arrayOfObjects);
 		return arrayOfObjects.length > 0 && Object.keys(arrayOfObjects[0].data).length > 0 ? 
 			parseApiPageToAppPage(arrayOfObjects[0]) : 
 			Promise.resolve({data: [], total: 0, page: 0, limit: 0, totalPages: 0});
