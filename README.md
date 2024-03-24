@@ -2,17 +2,19 @@
 
 Welcome to the Tutorial: Creating Tutorials for Cartesi Projects! In this tutorial, we will walk you through the process of creating comprehensive tutorials for projects developed on the Cartesi platform. By following this guide, you'll learn how to effectively document your Cartesi project, allowing users to understand its functionality, interact with its components, and replicate your work seamlessly.
 
+---
+
 ## General Idea
 
 This tutorial aims to demonstrate the methodology for documenting Cartesi projects effectively. It provides a structured approach to explaining project functionalities, system architecture, and deployment instructions. By following this template, developers can create informative and user-friendly documentation for their Cartesi projects.
+
+---
 
 ## Components Interaction
 
 The tutorial covers essential aspects such as project features, system architecture, and local deployment instructions. It also outlines the current functionality of the sample project, "The Prism," to serve as a reference for creating tutorials for other Cartesi projects.
 
-## How to Build and Run the Solution
-
-Follow these steps to build and run the solution locally:
+---
 
 ### Prerequisites
 - Node.js installed (preferably the latest stable version)
@@ -21,12 +23,15 @@ Follow these steps to build and run the solution locally:
 - Python3 installed on your machine
 - Sunodo installed on your machine
 
+---
+
 ### Installation
  Clone the projects repository:
 
 git clone [cartesi-front](https://github.com/leocoreixas/cartesi-labs)
 git clone [cartesi-api](https://github.com/jsimonassi/cartesi-labs)
 
+---
 
 ### Setting up the Frontend
 1. Navigate to the directory:
@@ -41,6 +46,7 @@ git clone [cartesi-api](https://github.com/jsimonassi/cartesi-labs)
 
     ```npm start```
 
+---
    
 ### Setting up the Backend
 1. Initiate the container with sunodo framework:
@@ -78,19 +84,27 @@ In this tutorial, we have covered the process of creating tutorials for Cartesi 
 
 ## References
 
+---
+
 - [Cartesi Website](https://cartesi.io/)
 - [Node.js Documentation](https://nodejs.org/en/docs/)
 - [Docker Documentation](https://docs.docker.com/)
 - [Python Documentation](https://docs.python.org/3/)
   
-## Team Members
+👥 Team Members
+
+---
 
 - [Leonardo Coreixas](https://github.com/leocoreixas)
 - [Joao Simonassi](https://github.com/jsimonassi)
 - [Gustavo Luppi](https://github.com/gustavoluppi)
 - [Bernardo Cerqueira](https://github.com/bernardocerq)
 - [Marcos Mendonça](https://github.com/marcoscezar1)
+
+
+---
   
+  © 2024 Cartesi Labs. All Rights Reserved.
 
 
     
