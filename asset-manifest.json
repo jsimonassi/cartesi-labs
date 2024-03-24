@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/cartesi-labs/static/css/main.4281ee9d.css",
-    "main.js": "/cartesi-labs/static/js/main.e3964059.js",
-    "static/js/453.50cb4794.chunk.js": "/cartesi-labs/static/js/453.50cb4794.chunk.js",
-    "index.html": "/cartesi-labs/index.html",
-    "main.4281ee9d.css.map": "/cartesi-labs/static/css/main.4281ee9d.css.map",
-    "main.e3964059.js.map": "/cartesi-labs/static/js/main.e3964059.js.map",
-    "453.50cb4794.chunk.js.map": "/cartesi-labs/static/js/453.50cb4794.chunk.js.map"
+    "main.css": "/static/css/main.94a2cf69.css",
+    "main.js": "/static/js/main.702695e1.js",
+    "static/media/CartesiImageBg.png": "/static/media/CartesiImageBg.e68d2c33f2b7d07c1b2a.png",
+    "static/media/index.cjs": "/static/media/index.61e57bb6b4fd6fcd0938.cjs",
+    "static/media/LogoCartesiLabs.svg": "/static/media/LogoCartesiLabs.850ab3be3ddf0b3eddbb493c0c60cb53.svg",
+    "static/media/CartesiWhiteLogo.svg": "/static/media/CartesiWhiteLogo.ae009f429fca936481f31cef428ff201.svg",
+    "static/media/InfoIcon.svg": "/static/media/InfoIcon.2b42928db4f9b55cdf519bf34c23870b.svg",
+    "static/media/Search.svg": "/static/media/Search.981591077bfe6934c0b49958672ad9a4.svg",
+    "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.4281ee9d.css",
-    "static/js/main.e3964059.js"
+    "static/css/main.94a2cf69.css",
+    "static/js/main.702695e1.js"
   ]
 }
