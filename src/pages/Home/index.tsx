@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Background from "../../assets/images/CartesiImageBg.png";
 import LogoCartesiLabs from "../../assets/images/LogoCartesiLabs.svg";
 import { Filter } from "../../components/Filter";
@@ -9,10 +9,14 @@ import Spinner from "../../components/loaders/Spinner";
 import { useNavigate } from "react-router";
 import { useTutorials } from "../../contexts/Tutorial";
 import Paginator from "../../components/Paginator";
+import _debounce from "lodash/debounce";
+
 
 export const Home = () => {
 
-	const {currentTutorialsPage, } = useTutorials();
+	const [searchKey, setSearchKey] = useState<string>("");
+	const [tagFilters, setTagFilters] = useState<string[]>([]);
+	const { currentTutorialsPage, onRequestNextPage, getTutorialsByName } = useTutorials();
 	const currentTutorials = useMemo(() => {
 		if (currentTutorialsPage) {
 			return currentTutorialsPage.data;
@@ -23,12 +27,15 @@ export const Home = () => {
 	const navigator = useNavigate();
 
 	useEffect(() => {
-		// const run = async () => {
-		// 	const tutorials = await GetTutorials({ page: 1, limit: 10 });
-		// 	setCurrentTutorials(tutorials);
-		// };
-		// run();
-	}, []);
+		onRequestNextPage(currentTutorialsPage?.page ?? 1, tagFilters);
+	}, [tagFilters]);
+
+
+	const handleDebounceFn = (inputValue: string) => {
+		getTutorialsByName(inputValue, tagFilters);
+	};
+
+	const debounceFn = useCallback(_debounce(handleDebounceFn, 500), []);
 
 	return (
 		<div className="bg-black">
@@ -37,7 +44,6 @@ export const Home = () => {
 				className="absolute inset-0 w-full object-cover h-[260px] "
 				alt="Background Image"
 			></img>
-			{/* <Navbar /> */}
 			<div className="w-full pt-6 pb-8 flex justify-center items-center relative mt-20">
 				<img
 					src={LogoCartesiLabs}
@@ -48,9 +54,12 @@ export const Home = () => {
 
 			<div className="bg-radial-gradient w-full h-screen">
 				<div className="pt-20 flex items-start lg:w-3/4">
-					<Filter />
+					<Filter values={tagFilters} onFilterSelected={(newList) => setTagFilters(newList)} />
 					<div className="flex pl-7 pr-7 lg:pr-0 flex-1 flex-col mb-20">
-						<Search />
+						<Search value={searchKey} onChange={(text: string) => {
+							setSearchKey(text);
+							debounceFn(text);
+						}} />
 						{
 							currentTutorials == null ?
 								<div className="w-full mt-8 flex justify-center items-center">
@@ -69,7 +78,14 @@ export const Home = () => {
 									}
 								</div>
 						}
-						<Paginator currentPage={0} totalPages={20} />
+						{
+							currentTutorialsPage && currentTutorialsPage?.totalPages > 1 &&
+							<Paginator
+								currentPage={currentTutorialsPage?.page ?? 1}
+								totalPages={currentTutorialsPage?.totalPages ?? 1}
+								onPageChange={(num) => onRequestNextPage(num, tagFilters)}
+							/>
+						}
 					</div>
 				</div>
 			</div>

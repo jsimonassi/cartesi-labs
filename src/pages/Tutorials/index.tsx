@@ -7,28 +7,27 @@ import AuthorInfos from "./components/AuthorInfos";
 import { useNavigate, useParams } from "react-router";
 import { useTutorials } from "../../contexts/Tutorial";
 
-//TODO: Move to .env
-const CARTESI_DISCORD_URL = "https://discord.gg/r8jEQCd3";
 
 const Tutorials = () => {
 	const [currentStep, setCurrentStep] = useState(0);
 	const [tutorial, setTutorial] = useState<Tutorial | null>(null);
 	const { getTutorialById } = useTutorials();
-	const {tutorialId} = useParams();
+	const { tutorialId } = useParams();
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if(tutorialId){
+		if (tutorialId) {
 			getTutorialById(Number(tutorialId))
 				.then((tutorial) => {
+					console.log(tutorial);
 					setTutorial(tutorial);
 				}).catch(() => {
 					navigate("/");
 				});
-		} else{
+		} else {
 			navigate("/");
 		}
-	});
+	}, []);
 
 
 	return (
@@ -42,7 +41,7 @@ const Tutorials = () => {
 				<AuthorInfos
 					lastUpdated={tutorial?.updatedAt ?? ""}
 					tutorialDuration={tutorial?.approximatedTime ?? 0}
-					onReportProblem={() => (location.href = CARTESI_DISCORD_URL)}
+					onReportProblem={() => (location.href = process.env.REACT_APP_CARTESI_DISCORD_URL ?? "/")}
 				/>
 			</div>
 			<div className=" w-3/4 flex-col">
@@ -56,15 +55,17 @@ const Tutorials = () => {
 						</p>
 					</div>
 				) : null}
-				<MarkdownTutorialPreview source="#Titutlo" />
-				<DirectionButtonGroup
-					onBack={() => setCurrentStep(currentStep - 1)}
-					onNext={() => setCurrentStep(currentStep + 1)}
-					onBackEnabled={currentStep > 0}
-					onNextEnabled={
-						tutorial && currentStep < tutorial.steps.length - 1 ? true : false
-					}
-				/>
+				<MarkdownTutorialPreview title={tutorial?.steps[currentStep].title} source={tutorial?.steps[currentStep].content ?? ""} />
+				{
+					<DirectionButtonGroup
+						onBack={() => setCurrentStep(currentStep - 1)}
+						onNext={() => setCurrentStep(currentStep + 1)}
+						onBackEnabled={currentStep > 0}
+						onNextEnabled={
+							tutorial && currentStep < tutorial.steps.length - 1 ? true : false
+						}
+					/>
+				}
 			</div>
 		</div>
 	);

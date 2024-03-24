@@ -1,11 +1,14 @@
-import { Tutorial, TutorialStep } from "../../../types/Tutorial";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
+import { Tutorial, TutorialStep } from "../../../types/Tutorial";
 import StepSelectorGroup from "../../Tutorials/components/StepSelectorGroup";
 import DirectionButtonGroup from "../../Tutorials/components/DirectionButtonGroup";
-import MarkdownTutorialPreview from "../../../components/MarkdownTutorialPreview";
 import TextInput from "../../../components/TextInput";
 import TextEditor from "../../../components/TextEditor";
 import BaseBtn from "../../../components/buttons/BaseBtn";
+import { useTutorials } from "../../../contexts/Tutorial";
+import toast from "react-hot-toast";
+
 
 const createEmptyStep = () => {
 	const step: TutorialStep = {
@@ -26,6 +29,7 @@ const TutorialSteps = ({
   setSteps: any;
 }) => {
 	const [currentStep, setCurrentStep] = useState(0);
+	const { saveTutorial } = useTutorials();
 
 	useEffect(() => {
 		if (!steps || steps.length == 0) {
@@ -62,6 +66,13 @@ const TutorialSteps = ({
 		});
 
 		const data = { ...tutorial, steps: steps };
+		const toastRef = toast.loading("Saving tutorial...");
+		saveTutorial(data)
+			.then(() => {
+				toast.success("Tutorial saved successfully!", { id: toastRef });
+			}).catch(() => {
+				toast.error("Failed to save tutorial.", { id: toastRef });
+			});
 	};
 
 	return (
