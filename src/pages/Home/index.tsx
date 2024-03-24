@@ -78,11 +78,14 @@ export const Home = () => {
 									}
 								</div>
 						}
-						<Paginator
-							currentPage={currentTutorialsPage?.page ?? 1}
-							totalPages={currentTutorialsPage?.totalPages ?? 1}
-							onPageChange={(num) => onRequestNextPage(num, tagFilters)}
-						/>
+						{
+							currentTutorialsPage && currentTutorialsPage?.totalPages > 1 &&
+							<Paginator
+								currentPage={currentTutorialsPage?.page ?? 1}
+								totalPages={currentTutorialsPage?.totalPages ?? 1}
+								onPageChange={(num) => onRequestNextPage(num, tagFilters)}
+							/>
+						}
 					</div>
 				</div>
 			</div>

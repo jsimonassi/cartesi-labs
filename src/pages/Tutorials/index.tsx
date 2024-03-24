@@ -19,6 +19,7 @@ const Tutorials = () => {
 		if (tutorialId) {
 			getTutorialById(Number(tutorialId))
 				.then((tutorial) => {
+					console.log(tutorial);
 					setTutorial(tutorial);
 				}).catch(() => {
 					navigate("/");
@@ -54,7 +55,7 @@ const Tutorials = () => {
 						</p>
 					</div>
 				) : null}
-				<MarkdownTutorialPreview source={tutorial?.steps[currentStep].content ?? ""} />
+				<MarkdownTutorialPreview title={tutorial?.steps[currentStep].title} source={tutorial?.steps[currentStep].content ?? ""} />
 				{
 					<DirectionButtonGroup
 						onBack={() => setCurrentStep(currentStep - 1)}
