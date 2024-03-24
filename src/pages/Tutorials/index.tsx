@@ -57,20 +57,14 @@ const Tutorials = () => {
 				) : null}
 				<MarkdownTutorialPreview source={tutorial?.steps[currentStep].content ?? ""} />
 				{
-					tutorial?.steps && currentStep === tutorial?.steps.length - 1 ? (
-						<div className="w-full flex justify-end items-end">
-							<BaseBtn variant="contained" size="md" onClick={() => navigate("/")}>Back to home</BaseBtn>
-						</div>
-					) : (
-						<DirectionButtonGroup
-							onBack={() => setCurrentStep(currentStep - 1)}
-							onNext={() => setCurrentStep(currentStep + 1)}
-							onBackEnabled={currentStep > 0}
-							onNextEnabled={
-								tutorial && currentStep < tutorial.steps.length - 1 ? true : false
-							}
-						/>
-					)
+					<DirectionButtonGroup
+						onBack={() => setCurrentStep(currentStep - 1)}
+						onNext={() => setCurrentStep(currentStep + 1)}
+						onBackEnabled={currentStep > 0}
+						onNextEnabled={
+							tutorial && currentStep < tutorial.steps.length - 1 ? true : false
+						}
+					/>
 				}
 			</div>
 		</div>
