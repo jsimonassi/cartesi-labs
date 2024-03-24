@@ -147,8 +147,8 @@ const TutorialTitleEdit = ({
 	};
 
 	return (
-		<div className="flex flex-col w-screen mt-36">
-			<div className="flex flex-col gap-[15px]">
+		<div className="fixed top-0 left-0 w-full h-full flex flex-col p-12 bg-pageBackground overflow-auto">
+			<div className="flex flex-col gap-[15px] mt-36">
 				<h1 className="text-white font-bold text-h6 text-center">
 					Create your tutorial
 				</h1>
