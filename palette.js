@@ -2,6 +2,7 @@ export default {
 	primary: "#00F7FF",
 	primaryDark: "#00D1D9",
 	pageBackground: "#181818",
+	tutorialBackground: "#1E1E1E",
 	secondary: "#CCFDFF",
 	success: "#4BB543",
 	secondaryText: "#C5C5C5",
