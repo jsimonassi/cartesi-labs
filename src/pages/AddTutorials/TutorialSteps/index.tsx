@@ -6,6 +6,8 @@ import MarkdownTutorialPreview from "../../../components/MarkdownTutorialPreview
 import TextInput from "../../../components/TextInput";
 import TextEditor from "../../../components/TextEditor";
 import BaseBtn from "../../../components/buttons/BaseBtn";
+import { ChevronLeft } from "../../../components/Chevron/Chevron-left";
+import { AddTutorialPage } from "..";
 
 const createEmptyStep = () => {
 	const step: TutorialStep = {
@@ -20,12 +22,16 @@ const TutorialSteps = ({
 	tutorial,
 	steps,
 	setSteps,
+	setPage,
 }: {
-  tutorial: Tutorial;
-  steps: TutorialStep[];
-  setSteps: any;
+	tutorial: Tutorial;
+	steps: TutorialStep[];
+	setSteps: any;
+	setPage: React.Dispatch<React.SetStateAction<AddTutorialPage>>
+
 }) => {
 	const [currentStep, setCurrentStep] = useState(0);
+
 
 	useEffect(() => {
 		if (!steps || steps.length == 0) {
@@ -64,9 +70,21 @@ const TutorialSteps = ({
 		const data = { ...tutorial, steps: steps };
 	};
 
+	const handleBack = () => {
+		setPage(AddTutorialPage.Info);
+	}
+
 	return (
 		<div className="fixed top-0 left-0 w-full h-full flex p-12 bg-pageBackground">
-			<div className="flex flex-col w-1/4 max-h-[680px] overflow-y-auto mt-8 pr-1">
+
+			<div className="flex flex-col w-1/4 max-h-[680px] overflow-y-auto  pr-1">
+				<BaseBtn size="md" variant="outline" className="rounded-full mb-10 mt-20 w-40 flex items-center justify-center gap-1" onClick={handleBack}>
+
+					<ChevronLeft />
+					Go Back
+
+
+				</BaseBtn>
 				<StepSelectorGroup
 					currentStep={currentStep}
 					onChangeStep={(newStep) => {
@@ -106,20 +124,20 @@ const TutorialSteps = ({
 					</div>
 				</div>
 			</div>
-			<div className=" w-3/4 flex-col mb-20">
+			<div className=" w-3/4 flex-col mb-20 mt-16">
 				<div className=" flex justify-center items-center flex-col">
 					<h3 className="text-white text-h3 font-700 mt-8 ml-8 w-full text-center">
 						{tutorial?.title}
 					</h3>
 				</div>
 				<TextInput
-					label="Aproximate time (minutes): "
+					label="Step's title: "
 					value={
 						steps && steps.length > 0 && steps[currentStep]
 							? steps[currentStep].title
 							: ""
 					}
-					placeholder="Step title"
+					placeholder="Step's title"
 					setValue={(v) => {
 						setSteps(
 							steps.map((step, i) => {
@@ -160,7 +178,7 @@ const TutorialSteps = ({
 						}
 					/>
 					<BaseBtn size="md" onClick={handleSave}>
-            Save
+						Save
 					</BaseBtn>
 				</div>
 			</div>

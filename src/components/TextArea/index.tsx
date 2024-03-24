@@ -1,13 +1,13 @@
 import { useState } from "react";
 import React from "react";
 type TextAreaParms = {
-  value: string;
-  setValue: (v: string) => void;
-  label: string;
-  placeholder?: string;
-  errorText?: string;
-  validator?: any;
-  className?: string;
+	value: string;
+	setValue: (v: string) => void;
+	label: string;
+	placeholder?: string;
+	errorText?: string;
+	validator?: any;
+	className?: string;
 };
 
 const TextInputArea = ({
@@ -19,7 +19,6 @@ const TextInputArea = ({
 	validator,
 	className,
 }: TextAreaParms) => {
-	const [change, setChange] = useState(false);
 
 	return (
 		<div className={`flex flex-col gap-[2px] ${className}`}>
@@ -29,11 +28,10 @@ const TextInputArea = ({
 				value={value}
 				onChange={(e) => {
 					setValue(e.target.value);
-					setChange(true);
 				}}
 				placeholder={placeholder ?? ""}
 			/>
-			{change && errorText && validator ? (
+			{errorText && validator ? (
 				<span className="text-body-sm text-red-500">{errorText}</span>
 			) : (
 				<></>

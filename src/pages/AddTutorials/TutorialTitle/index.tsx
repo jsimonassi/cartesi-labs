@@ -109,29 +109,7 @@ const Autocomplete = ({
 	);
 };
 
-const validateTutorial = (tutorial: Tutorial) => {
-	if (!tutorial.title) {
-		alert("Tutorial title cannot be empty.");
-		return false;
-	}
 
-	if (!tutorial.description) {
-		alert("Description title cannot be empty.");
-		return false;
-	}
-
-	if (!tutorial.description) {
-		alert("Description title cannot be empty.");
-		return false;
-	}
-
-	if (tutorial.approximatedTime <= 0) {
-		alert("Time must be positive");
-		return false;
-	}
-
-	return true;
-};
 
 const TutorialTitleEdit = ({
 	tutorial,
@@ -143,6 +121,29 @@ const TutorialTitleEdit = ({
 	setPage: any;
 }) => {
 	const navigator = useNavigate();
+	const [buttonCreateClicked, setButtonCreateClicked] = useState(false);
+
+	const validateTutorial = (tutorial: Tutorial) => {
+		setButtonCreateClicked(true);
+
+		if (!tutorial.title) {
+			return false;
+		}
+
+		if (!tutorial.description) {
+			return false;
+		}
+
+		if (!tutorial.description) {
+			return false;
+		}
+
+		if (tutorial.approximatedTime <= 0) {
+			return false;
+		}
+
+		return true;
+	};
 
 	return (
 		<div className="flex flex-col w-screen mt-36">
@@ -164,7 +165,7 @@ const TutorialTitleEdit = ({
 						setTutorial({ ...tutorial, title: v });
 					}}
 					errorText="Title cannot be empty"
-					validator={!tutorial.title}
+					validator={!tutorial.title && buttonCreateClicked}
 				/>
 
 				<TextInputArea
@@ -175,7 +176,7 @@ const TutorialTitleEdit = ({
 						setTutorial({ ...tutorial, description: v });
 					}}
 					errorText="Description cannot be empty"
-					validator={!tutorial.description}
+					validator={!tutorial.description && buttonCreateClicked}
 					className="h-28"
 				/>
 				<div className="flex gap-4">
@@ -187,7 +188,7 @@ const TutorialTitleEdit = ({
 							setTutorial({ ...tutorial, approximatedTime: v });
 						}}
 						errorText="Value must be positive"
-						validator={tutorial.approximatedTime <= 0}
+						validator={tutorial.approximatedTime <= 0 && buttonCreateClicked}
 						type="number"
 						tooltip="Time spent to read the tutorial"
 						className="w-full"

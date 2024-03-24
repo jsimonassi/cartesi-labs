@@ -2,10 +2,10 @@ import React from "react";
 import BaseBtn from "../../../../components/buttons/BaseBtn";
 
 interface IProps {
-    onBackEnabled: boolean;
-    onNextEnabled: boolean;
-    onBack: () => void;
-    onNext: () => void;
+	onBackEnabled: boolean;
+	onNextEnabled: boolean;
+	onBack: () => void;
+	onNext: () => void;
 }
 
 
@@ -16,7 +16,7 @@ const DirectionButtonGroup = (props: IProps) => {
 			<BaseBtn
 				variant="outline"
 				size="md"
-				className="mr-8"
+				className="mr-2"
 				disabled={!props.onBackEnabled}
 				onClick={props.onBack} >Back</BaseBtn>
 			<BaseBtn
