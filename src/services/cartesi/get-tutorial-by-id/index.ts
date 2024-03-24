@@ -7,7 +7,7 @@ import { Tutorial } from "../../../types/Tutorial";
 import { parseApiTutorialToAppTutorial } from "./parser";
 
 async function GetTutorialById(id: number): Promise<Tutorial> {
-	const { replaceSpecialCharacters, sanitizeArrayOfObjects } = new DataSanitizer();
+	const { sanitizeArrayOfObjects } = new DataSanitizer();
 
 	const payload = {
 		function_id: FunctionsInspectEnum.GET_TUTORIAL_BY_ID,

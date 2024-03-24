@@ -36,7 +36,6 @@ async function getTutorials(data: GetTutorialPageRequest, name: string | null = 
 		if (response.data?.reports?.length === 0) {
 			Promise.resolve({data: [], totalPages: 1, page: 1});
 		}
-		// debugger;
 		const parsedData = response.data.reports[0].payload;
 		const regularString = web3.utils.hexToAscii(parsedData);
 		const arrayOfString = regularString.split("\n");

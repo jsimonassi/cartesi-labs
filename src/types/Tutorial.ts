@@ -1,3 +1,6 @@
+import { ReactElement } from "react";
+import { IconType } from "react-icons";
+
 export interface PagedTutorialResponse {
     page: number,
     totalPages: number,
@@ -23,5 +26,5 @@ export interface TutorialStep {
 
 export interface ToolTags {
   name: string;
-  icon: string;
+  icon: IconType;
 }

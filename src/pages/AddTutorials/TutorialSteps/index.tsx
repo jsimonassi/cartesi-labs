@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
 import { Tutorial, TutorialStep } from "../../../types/Tutorial";
 import StepSelectorGroup from "../../Tutorials/components/StepSelectorGroup";

@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import TAGS from "../../../constants/options";
 import { PagedTutorialResponse, Tutorial } from "../../../types/Tutorial";
+import { IconType } from "react-icons";
 
 export const parseApiPageToAppPage = (apiTutorial: any): PagedTutorialResponse => {
 	const tutorialList: Tutorial[] = [];
@@ -13,7 +16,7 @@ export const parseApiPageToAppPage = (apiTutorial: any): PagedTutorialResponse =
 			likes: apiTutorial.data[key].likes,
 			updatedAt: apiTutorial.data[key].updatedAt ?? apiTutorial.data[key].createdAt,
 			steps: apiTutorial.data[key].steps,
-			toolTags: []
+			toolTags: apiTutorial.data[key].tags.map((tag: any) => { return { name: tag.name, icon: __getIcon(tag.name) };})
 		};
 		tutorialList.push(tutorial);
 	});
@@ -23,6 +26,14 @@ export const parseApiPageToAppPage = (apiTutorial: any): PagedTutorialResponse =
 		page: apiTutorial.page,
 		totalPages: apiTutorial.totalPages
 	};
+};
+
+const __getIcon = (name: string): IconType | null => {
+	const currentTag = TAGS.find((tag) => tag.name === name);
+	if(currentTag){
+		return currentTag.icon;
+	}
+	return null;
 };
 
 // {

@@ -44,7 +44,6 @@ const TutorialsProvider: React.FC<TutorialsProviderProps> = ({ children }) => {
 		setCurrentTutorialsPage(null);
 		getTutorials({ page: nextPage, limit: PAGE_SIZE }, name)
 			.then((tutorials) => {
-				console.log("TUTORIALS: ", tutorials);
 				setCurrentTutorialsPage(tutorials);
 			}).catch((error) => {
 				setCurrentTutorialsPage({data: [], totalPages:1, page: 1});

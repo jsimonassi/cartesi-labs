@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Tutorial } from "../../../types/Tutorial";
 
 export const parseApiTutorialToAppTutorial = (apiTutorial: any): Tutorial => {

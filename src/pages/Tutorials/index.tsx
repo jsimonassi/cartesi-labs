@@ -6,7 +6,6 @@ import DirectionButtonGroup from "./components/DirectionButtonGroup";
 import AuthorInfos from "./components/AuthorInfos";
 import { useNavigate, useParams } from "react-router";
 import { useTutorials } from "../../contexts/Tutorial";
-import BaseBtn from "../../components/buttons/BaseBtn";
 
 
 const Tutorials = () => {
@@ -22,10 +21,10 @@ const Tutorials = () => {
 				.then((tutorial) => {
 					setTutorial(tutorial);
 				}).catch(() => {
-					// navigate("/");
+					navigate("/");
 				});
 		} else {
-			// navigate("/");
+			navigate("/");
 		}
 	}, []);
 

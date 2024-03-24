@@ -9,19 +9,17 @@ interface IProps {
 const Paginator: React.FC<IProps> = ({ totalPages, currentPage, onPageChange }) => {
 	const getPageNumbers = () => {
 		const pages = [];
-		const maxVisiblePages = 1; // Número máximo de páginas visíveis antes e depois da página atual
+		const maxVisiblePages = 1;
 
-		// Adicionar página atual
+	
 		pages.push(currentPage);
 
-		// Adicionar páginas anteriores à página atual
 		for (let i = 1; i <= maxVisiblePages; i++) {
 			if (currentPage - i > 0) {
 				pages.unshift(currentPage - i);
 			}
 		}
 
-		// Adicionar páginas posteriores à página atual
 		for (let i = 1; i <= maxVisiblePages; i++) {
 			if (currentPage + i <= totalPages) {
 				pages.push(currentPage + i);
