@@ -115,7 +115,7 @@ module.exports = {
 
 		},
 		backgroundImage: {
-			"radial-gradient": "radial-gradient(143.3% 143.3% at 50% -43.3%, #010101 30%,#532E22 100%)",
+			"radial-gradient": "radial-gradient(143.3% 143.3% at 50% -43.3%, #010101 40%,#532E22 100%)",
 		},
 	},
 	plugins: [],
