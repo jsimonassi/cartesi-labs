@@ -103,6 +103,21 @@ In order to start the back-end, run the following commands in a dedicated termin
 
 In this tutorial, we have covered the process of creating tutorials for Cartesi projects. By following the outlined steps, developers can effectively document their projects, enabling users to understand, interact with, and replicate their work. This structured approach to documentation ensures that project functionalities, system architecture, and deployment instructions are clearly explained, facilitating a seamless user experience. We hope this tutorial has been helpful in guiding you through the process of creating comprehensive tutorials for Cartesi projects. If you have any questions or require further assistance, please feel free to reach out to the Cartesi team or community for support. Thank you for your interest in Cartesi, and we look forward to seeing the tutorials you create for your projects!
 
+## Future Work
+
+As we continue to evolve and improve our tutorial creation platform, we envision several exciting features and enhancements to enrich the user experience and foster community engagement. Here are some ideas for future work:
+
+### 1. Enhanced User Interaction
+   - **Like Feature**: Implement a feature allowing users to like tutorials. This functionality not only provides positive feedback to contributors but also helps the community discover high-quality tutorials more easily.
+
+### 2. Advanced Tutorial Creation Tools
+   - **Interactive Elements**: Introduce interactive elements within tutorials, such as quizzes or exercises, to make the learning process more engaging and effective.
+
+
+These future work and enhancements aim to make our tutorial creation platform more dynamic, inclusive, and user-centric. By continuously innovating and incorporating feedback from the community, we aspire to create a vibrant ecosystem where knowledge sharing thrives and learners can excel. Let's build the future of tutorial creation together!
+
+
+
 ## References
 
 ---
