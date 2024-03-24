@@ -37,6 +37,38 @@ export const Home = () => {
 
 	const debounceFn = useCallback(_debounce(handleDebounceFn, 500), []);
 
+
+	const getContent = () => {
+		if (currentTutorials == null) {
+			return (
+				<div className="w-full mt-8 flex justify-center items-center">
+					<Spinner color="primary" size={50} />
+				</div>
+			);
+		}
+		if (currentTutorials.length === 0) {
+			return (
+				<div className="w-full mt-8 flex justify-center items-center">
+					<p className="text-white text-lg">No tutorials found</p>
+				</div>
+			);
+		}
+
+		return (
+			<div className="w-full grid lg:grid-cols-2 grid-cols-1 mt-3 gap-5">
+				{
+					currentTutorials.map((card: Tutorial, index: number) =>
+						<Card
+							info={card}
+							key={index}
+							onStartRequest={() => navigator(`/tutorial/${card.id}`)}
+						/>
+					)
+				}
+			</div>
+		);
+	};
+
 	return (
 		<div className="bg-black">
 			<img
@@ -61,22 +93,7 @@ export const Home = () => {
 							debounceFn(text);
 						}} />
 						{
-							currentTutorials == null ?
-								<div className="w-full mt-8 flex justify-center items-center">
-									<Spinner color="primary" size={50} />
-								</div>
-								:
-								<div className="w-full grid lg:grid-cols-2 grid-cols-1 mt-3 gap-5">
-									{
-										currentTutorials.map((card: Tutorial, index: number) =>
-											<Card
-												info={card}
-												key={index}
-												onStartRequest={() => navigator(`/tutorial/${card.id}`)}
-											/>
-										)
-									}
-								</div>
+							getContent()
 						}
 						{
 							currentTutorialsPage && currentTutorialsPage?.totalPages > 1 &&

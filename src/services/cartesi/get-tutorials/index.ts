@@ -45,7 +45,6 @@ async function getTutorials(data: GetTutorialPageRequest, name: string | null = 
 		const regularString = web3.utils.hexToAscii(parsedData);
 		const arrayOfString = regularString.split("\n");
 		const arrayOfObjects = sanitizeArrayOfObjects(arrayOfString);
-		console.log("Cheguei aqui: ", arrayOfObjects);
 		return arrayOfObjects.length > 0 && Object.keys(arrayOfObjects[0].data).length > 0 ? 
 			parseApiPageToAppPage(arrayOfObjects[0]) : 
 			Promise.resolve({data: [], totalPages: 1, page: 1});

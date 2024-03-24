@@ -10,7 +10,6 @@ interface IProps {
 	className?: string
 }
 
-console.log("Spinner");
 const Spinner = (props: IProps) => {
 	const {
 		isFixed,

@@ -19,7 +19,6 @@ const Tutorials = () => {
 		if (tutorialId) {
 			getTutorialById(Number(tutorialId))
 				.then((tutorial) => {
-					console.log(tutorial);
 					setTutorial(tutorial);
 				}).catch(() => {
 					navigate("/");
