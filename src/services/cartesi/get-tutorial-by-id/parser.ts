@@ -1,16 +1,17 @@
 import { Tutorial } from "../../../types/Tutorial";
 
 export const parseApiTutorialToAppTutorial = (apiTutorial: any): Tutorial => {
-
+	
+	const key = Object.keys(apiTutorial)[0];
 	const tutorial: Tutorial = {
-		id: apiTutorial[1].id,
-		title: apiTutorial[1].title,
-		description: apiTutorial[1].description,
-		approximatedTime: apiTutorial[1].approximatedTime,
-		address: apiTutorial[1].address,
-		likes: apiTutorial[1].likes,
-		updatedAt: apiTutorial[1].updatedAt ?? apiTutorial[1].createdAt,
-		steps: apiTutorial[1].steps,
+		id: apiTutorial[key].id,
+		title: apiTutorial[key].title,
+		description: apiTutorial[key].description,
+		approximatedTime: apiTutorial[key].approximatedTime,
+		address: apiTutorial[key].address,
+		likes: apiTutorial[key].likes,
+		updatedAt: apiTutorial[key].updatedAt ?? apiTutorial[key].createdAt,
+		steps: apiTutorial[key].steps,
 		toolTags: []
 	};
 	return tutorial;

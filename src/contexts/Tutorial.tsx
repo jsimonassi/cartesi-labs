@@ -5,19 +5,18 @@ import GetTutorialById from "../services/cartesi/get-tutorial-by-id";
 import addTutorial from "../services/cartesi/create-tutorial";
 
 interface TutorialsContextData {
-    currentTutorialsPage: PagedTutorialResponse | null;
+	currentTutorialsPage: PagedTutorialResponse | null;
 	getTutorialsByName: (name: string) => void;
-    onRequestNextPage: () => void;
-    onRequestPreviousPage: () => void;
-    getTutorialById: (id: number) => Promise<Tutorial>;
+	onRequestNextPage: (newPage: number) => void;
+	getTutorialById: (id: number) => Promise<Tutorial>;
 	saveTutorial: (tutorial: Tutorial) => Promise<void>;
 }
 
 interface TutorialsProviderProps {
-    children: React.ReactNode;
+	children: React.ReactNode;
 }
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 1;
 
 export const TutorialsContext = createContext({} as TutorialsContextData);
 
@@ -25,18 +24,13 @@ const TutorialsProvider: React.FC<TutorialsProviderProps> = ({ children }) => {
 
 	const [currentTutorialsPage, setCurrentTutorialsPage] = useState<PagedTutorialResponse | null>(null);
 
-	const onRequestNextPage = () => {
-		//TODO: Validar paginação
-		let nextPage = 0;
-		if(currentTutorialsPage){
-			nextPage = currentTutorialsPage.page + 1;
-		}
+	const onRequestNextPage = (newPage: number) => {
 		setCurrentTutorialsPage(null);
-		getTutorials({ page: nextPage, limit: PAGE_SIZE })
+		getTutorials({ page: newPage, limit: PAGE_SIZE })
 			.then((tutorials) => {
 				setCurrentTutorialsPage(tutorials);
 			}).catch((error) => {
-				setCurrentTutorialsPage({data: [], totalPages:0, page: 0});
+				setCurrentTutorialsPage({data: [], totalPages:1, page: 1});
 				console.log(error);
 			});
 	};
@@ -53,13 +47,9 @@ const TutorialsProvider: React.FC<TutorialsProviderProps> = ({ children }) => {
 				console.log("TUTORIALS: ", tutorials);
 				setCurrentTutorialsPage(tutorials);
 			}).catch((error) => {
-				setCurrentTutorialsPage({data: [], totalPages:0, page: 0});
+				setCurrentTutorialsPage({data: [], totalPages:1, page: 1});
 				console.log(error);
 			});
-	};
-
-	const onRequestPreviousPage = () => {
-		//TODO: Implementar lógica para ir a página anterior
 	};
 
 	const getTutorialById = (id: number) => {
@@ -76,7 +66,6 @@ const TutorialsProvider: React.FC<TutorialsProviderProps> = ({ children }) => {
 				currentTutorialsPage,
 				getTutorialsByName,
 				onRequestNextPage,
-				onRequestPreviousPage,
 				getTutorialById,
 				saveTutorial
 			}}>

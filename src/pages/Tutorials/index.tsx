@@ -6,27 +6,28 @@ import DirectionButtonGroup from "./components/DirectionButtonGroup";
 import AuthorInfos from "./components/AuthorInfos";
 import { useNavigate, useParams } from "react-router";
 import { useTutorials } from "../../contexts/Tutorial";
+import BaseBtn from "../../components/buttons/BaseBtn";
 
 
 const Tutorials = () => {
 	const [currentStep, setCurrentStep] = useState(0);
 	const [tutorial, setTutorial] = useState<Tutorial | null>(null);
 	const { getTutorialById } = useTutorials();
-	const {tutorialId} = useParams();
+	const { tutorialId } = useParams();
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if(tutorialId){
+		if (tutorialId) {
 			getTutorialById(Number(tutorialId))
 				.then((tutorial) => {
 					setTutorial(tutorial);
 				}).catch(() => {
-					navigate("/");
+					// navigate("/");
 				});
-		} else{
-			navigate("/");
+		} else {
+			// navigate("/");
 		}
-	});
+	}, []);
 
 
 	return (
@@ -54,15 +55,23 @@ const Tutorials = () => {
 						</p>
 					</div>
 				) : null}
-				<MarkdownTutorialPreview source="#Titutlo" />
-				<DirectionButtonGroup
-					onBack={() => setCurrentStep(currentStep - 1)}
-					onNext={() => setCurrentStep(currentStep + 1)}
-					onBackEnabled={currentStep > 0}
-					onNextEnabled={
-						tutorial && currentStep < tutorial.steps.length - 1 ? true : false
-					}
-				/>
+				<MarkdownTutorialPreview source={tutorial?.steps[currentStep].content ?? ""} />
+				{
+					tutorial?.steps && currentStep === tutorial?.steps.length - 1 ? (
+						<div className="w-full flex justify-end items-end">
+							<BaseBtn variant="contained" size="md" onClick={() => navigate("/")}>Back to home</BaseBtn>
+						</div>
+					) : (
+						<DirectionButtonGroup
+							onBack={() => setCurrentStep(currentStep - 1)}
+							onNext={() => setCurrentStep(currentStep + 1)}
+							onBackEnabled={currentStep > 0}
+							onNextEnabled={
+								tutorial && currentStep < tutorial.steps.length - 1 ? true : false
+							}
+						/>
+					)
+				}
 			</div>
 		</div>
 	);

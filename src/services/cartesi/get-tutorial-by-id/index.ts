@@ -29,7 +29,6 @@ async function GetTutorialById(id: number): Promise<Tutorial> {
 		const regularString = web3.utils.hexToAscii(parsedData);
 		const arrayOfString = regularString.split("\n");
 		const arrayOfObjects = sanitizeArrayOfObjects(arrayOfString);
-		console.log("OPAAA: ", arrayOfObjects);
 		if(arrayOfObjects.length === 0 || !arrayOfObjects[0]){
 			return Promise.reject("Tutorial not found");
 		}

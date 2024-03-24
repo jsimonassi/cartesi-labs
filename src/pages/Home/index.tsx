@@ -15,7 +15,7 @@ import _debounce from "lodash/debounce";
 export const Home = () => {
 
 	const [searchKey, setSearchKey] = useState<string>("");
-	const {currentTutorialsPage, onRequestNextPage, getTutorialsByName } = useTutorials();
+	const { currentTutorialsPage, onRequestNextPage, getTutorialsByName } = useTutorials();
 	const currentTutorials = useMemo(() => {
 		if (currentTutorialsPage) {
 			return currentTutorialsPage.data;
@@ -23,10 +23,12 @@ export const Home = () => {
 		return null;
 	}, [currentTutorialsPage?.page]);
 
+	console.log("CURRENT TUTORIALS: ", currentTutorialsPage);
+
 	const navigator = useNavigate();
 
 	useEffect(() => {
-		onRequestNextPage();
+		onRequestNextPage(1);
 	}, []);
 
 
@@ -78,7 +80,11 @@ export const Home = () => {
 									}
 								</div>
 						}
-						<Paginator currentPage={0} totalPages={20} />
+						<Paginator
+							currentPage={currentTutorialsPage?.page ?? 1}
+							totalPages={currentTutorialsPage?.totalPages ?? 1}
+							onPageChange={(num) => onRequestNextPage(num)}
+						/>
 					</div>
 				</div>
 			</div>

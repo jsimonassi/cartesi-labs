@@ -34,17 +34,16 @@ async function getTutorials(data: GetTutorialPageRequest, name: string | null = 
 	try {
 		const response = await axios.get(config.url);
 		if (response.data?.reports?.length === 0) {
-			Promise.resolve({data: [], total: 0, page: 0, limit: 0});
+			Promise.resolve({data: [], totalPages: 1, page: 1});
 		}
 		// debugger;
 		const parsedData = response.data.reports[0].payload;
 		const regularString = web3.utils.hexToAscii(parsedData);
 		const arrayOfString = regularString.split("\n");
 		const arrayOfObjects = sanitizeArrayOfObjects(arrayOfString);
-		console.log("OPAA   A: ", arrayOfObjects);
 		return arrayOfObjects.length > 0 && Object.keys(arrayOfObjects[0].data).length > 0 ? 
 			parseApiPageToAppPage(arrayOfObjects[0]) : 
-			Promise.resolve({data: [], total: 0, page: 0, limit: 0, totalPages: 0});
+			Promise.resolve({data: [], totalPages: 1, page: 1});
 	} catch (error) {
 		return Promise.reject(error);
 	}
