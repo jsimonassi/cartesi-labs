@@ -4,16 +4,16 @@ import InfoIcon from "../../assets/images/InfoIcon.svg";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 
 type TextInputParms = {
-  value: string | number;
-  setValue: (v: string) => void;
-  label: string;
-  placeholder?: string;
-  errorText?: string;
-  validator?: any;
-  className?: string;
-  type?: "number" | "email" | "text";
-  tooltip?: string;
-  max?: number;
+	value: string | number;
+	setValue: (v: string) => void;
+	label: string;
+	placeholder?: string;
+	errorText?: string;
+	validator?: any;
+	className?: string;
+	type?: "number" | "email" | "text";
+	tooltip?: string;
+	max?: number;
 };
 
 const TextInput = ({
@@ -28,7 +28,6 @@ const TextInput = ({
 	tooltip,
 	max,
 }: TextInputParms) => {
-	const [change, setChange] = useState(false);
 
 	return (
 		<>
@@ -36,13 +35,10 @@ const TextInput = ({
 				<label className="text-white text-caption">{label}</label>
 				<div className="w-full relative h-full">
 					<input
-						className={`border py-1 pl-2 w-full h-full rounded-lg border-primary bg-transparent text-label-md text-white ${
-							tooltip ? "pr-8" : "pr-2"
-						}`}
+						className={`border py-1 pl-2 w-full h-full rounded-lg border-primary bg-transparent text-label-md text-white ${tooltip ? "pr-8" : "pr-2"}`}
 						value={value}
 						onChange={(e) => {
 							setValue(e.target.value);
-							setChange(true);
 						}}
 						placeholder={placeholder ?? ""}
 						type={type ?? "text"}
@@ -62,7 +58,7 @@ const TextInput = ({
 						<></>
 					)}
 				</div>
-				{change && errorText && validator ? (
+				{errorText && validator ? (
 					<span className="text-body-sm text-red-500">{errorText}</span>
 				) : (
 					<></>

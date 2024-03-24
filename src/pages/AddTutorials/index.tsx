@@ -45,6 +45,7 @@ const AddTutorials = () => {
 						tutorial={tutorial}
 						steps={steps}
 						setSteps={setSteps}
+						setPage={setPage}
 					/>
 				)}
 			</div>
