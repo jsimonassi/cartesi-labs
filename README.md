@@ -12,11 +12,28 @@ This tutorial aims to demonstrate the methodology for documenting Cartesi projec
 
 ## Components Interaction
 
-The tutorial covers essential aspects such as project features, system architecture, and local deployment instructions. It also outlines the current functionality of the sample project, "The Prism," to serve as a reference for creating tutorials for other Cartesi projects.
+Initially, you'll encounter the Home screen, offering options to filter tutorials either by created tags or through a search function.
+<br><br>
+<img src="src/assets/images/Home.png" alt="drawing" width="800" heigth="800"/>
+<br><br>
+Subsequently, you can navigate into tutorials by clicking on the cards with the 'start' button.
+<br><br>
+<img src="src/assets/images/See_Tutorial.png" alt="drawing" width="800" heigth="800"/>
+<br><br>
+Additionally, you have the option to contribute your own tutorial by accessing the "Add tutorial" button in the navigation bar. So, you will be redirected to the tutorial creation page, which is divided into two parts, as shown in the images below.
+<br><br>
+Step 1:
+<br><br>
+<img src="src/assets/images/Add_tutorial_1.png" alt="drawing" width="800" heigth="800"/>
+<br><br>
+Step 2:
+<br><br>
+<img src="src/assets/images/Add_tutorial_2.png" alt="drawing" width="800"/>
 
 ---
 
 ### Prerequisites
+
 - Node.js installed (preferably the latest stable version)
 - Git installed on your machine
 - Docker installed on your machine
@@ -26,7 +43,8 @@ The tutorial covers essential aspects such as project features, system architect
 ---
 
 ### Installation
- Clone the projects repository:
+
+Clone the projects repository:
 
 git clone [cartesi-front](https://github.com/leocoreixas/cartesi-labs)
 git clone [cartesi-api](https://github.com/jsimonassi/cartesi-labs)
@@ -34,35 +52,37 @@ git clone [cartesi-api](https://github.com/jsimonassi/cartesi-labs)
 ---
 
 ### Setting up the Frontend
+
 1. Navigate to the directory:
 
-    ```cd cartesi-labs```
+   `cd cartesi-labs`
 
 2. Install the project dependencies:
 
-    ```npm install```
+   `npm install`
 
-3.  Run the frontend:
+3. Run the frontend:
 
-    ```npm start```
+   `npm start`
 
 ---
-   
+
 ### Setting up the Backend
+
 1. Initiate the container with sunodo framework:
 
-    ```sunodo build``` and ```sunodo run --no-backend```
+   `sunodo build` and `sunodo run --no-backend`
 
 2. Navigate to the directory:
 
-    ```cd cartesi-labs```
+   `cd cartesi-labs`
 
 3. Run the backend:
 
 This DApp's back-end is written in Python, so to run it in your machine you need to have python3 installed.
 
 In order to start the back-end, run the following commands in a dedicated terminal:
-    
+
     cd dapp.py
     python3 -m venv .venv
     . .venv/bin/activate
@@ -70,9 +90,10 @@ In order to start the back-end, run the following commands in a dedicated termin
     ROLLUP_HTTP_SERVER_URL="http://localhost:8080/host-runner" python3 dapp.py
 
 ### Testing the Solution
+
 1. Open your browser and navigate to the following URL:
 
-    ```http://localhost:3000/```
+   `http://localhost:3000/`
 
 2. Interact with the project's functionalities and test its features.
 3. Verify that the project is running correctly and that all components are functioning as expected.
@@ -90,7 +111,7 @@ In this tutorial, we have covered the process of creating tutorials for Cartesi 
 - [Node.js Documentation](https://nodejs.org/en/docs/)
 - [Docker Documentation](https://docs.docker.com/)
 - [Python Documentation](https://docs.python.org/3/)
-  
+
 👥 Team Members
 
 ---
@@ -101,15 +122,6 @@ In this tutorial, we have covered the process of creating tutorials for Cartesi 
 - [Bernardo Cerqueira](https://github.com/bernardocerq)
 - [Marcos Mendonça](https://github.com/marcoscezar1)
 
-
 ---
-  
-  © 2024 Cartesi Labs. All Rights Reserved.
 
-
-    
-
-
-
-
-
+© 2024 Cartesi Labs. All Rights Reserved.
