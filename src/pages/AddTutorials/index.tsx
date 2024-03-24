@@ -31,7 +31,7 @@ const AddTutorials = () => {
 	const [page, setPage] = useState(AddTutorialPage.Info);
 
 	return (
-		<div className="bg-tutorialBackground w-screen h-screen">
+		<div className="bg-tutorialBackground w-screen h-full">
 			<Navbar />
 			<div className="flex justify-center items-center w-full">
 				{page === AddTutorialPage.Info ? (
