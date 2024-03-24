@@ -13,7 +13,13 @@ const MarkdownTutorialPreview = (props: IProps) => {
 			{ props.title && <h5 className="text-white text-h5 font-700 mt-8 ml-8 w-full pl-7">{props.title}</h5>}
 			<MarkdownPreview 
 				source={props.source} 
-				style={{ width: "100%", height: "100%", backgroundColor: "transparent", padding: 16 }} 
+				style={{ 
+					width: "100%", 
+					height: "100%", 
+					backgroundColor: 
+					"transparent", padding: 16,
+					overflowY: "auto"
+				}} 
 			/>
 		</div>
 	);
