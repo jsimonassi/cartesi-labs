@@ -3,7 +3,6 @@ import React from "react";
 
 import { Home } from "../pages/Home";
 import AddTutorials from "../pages/AddTutorials";
-import Error from "../pages/misc/Error";
 import Tutorials from "../pages/Tutorials";
 import { Navbar } from "../components/Navbar";
 
@@ -15,7 +14,7 @@ const Router = () => {
 				<Route path="/" element={<Home />} />
 				<Route path="/add-tutorials" element={<AddTutorials />} />
 				<Route path="/tutorial/:tutorialId" element={<Tutorials />} />
-				<Route path="*" element={<Error />} />
+				<Route path="*" element={<Home />} />
 			</Routes>
 		</BrowserRouter>
 	);

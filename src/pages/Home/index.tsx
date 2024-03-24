@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Background from "../../assets/images/CartesiImageBg.png";
 import LogoCartesiLabs from "../../assets/images/LogoCartesiLabs.svg";
 import { Filter } from "../../components/Filter";
@@ -7,21 +7,27 @@ import { Card } from "../../components/Card";
 import { Tutorial } from "../../types/Tutorial";
 import Spinner from "../../components/loaders/Spinner";
 import { useNavigate } from "react-router";
-import GetTutorials from "../../services/cartesi/get-tutorials";
+import { useTutorials } from "../../contexts/Tutorial";
+import Paginator from "../../components/Paginator";
 
 export const Home = () => {
-	const [currentTutorials, setCurrentTutorials] = useState<Tutorial[] | null>(
-		null
-	);
+
+	const {currentTutorialsPage, } = useTutorials();
+	const currentTutorials = useMemo(() => {
+		if (currentTutorialsPage) {
+			return currentTutorialsPage.data;
+		}
+		return null;
+	}, [currentTutorialsPage?.page]);
+
 	const navigator = useNavigate();
 
 	useEffect(() => {
-		//TODO: Se for paginado, isso pode ser movido para um contexto
-		const run = async () => {
-			const tutorials = await GetTutorials({ page: 1, limit: 10 });
-			setCurrentTutorials(tutorials);
-		};
-		run();
+		// const run = async () => {
+		// 	const tutorials = await GetTutorials({ page: 1, limit: 10 });
+		// 	setCurrentTutorials(tutorials);
+		// };
+		// run();
 	}, []);
 
 	return (
@@ -45,21 +51,25 @@ export const Home = () => {
 					<Filter />
 					<div className="flex pl-7 pr-7 lg:pr-0 flex-1 flex-col mb-20">
 						<Search />
-						{currentTutorials == null ? (
-							<div className="w-full mt-8 flex justify-center items-center">
-								<Spinner color="primary" size={50} />
-							</div>
-						) : (
-							<div className="w-full grid lg:grid-cols-2 grid-cols-1 mt-3 gap-5">
-								{currentTutorials.map((card: Tutorial, index: number) => (
-									<Card
-										info={card}
-										key={index}
-										onStartRequest={() => navigator(`/tutorial/${card.id}`)}
-									/>
-								))}
-							</div>
-						)}
+						{
+							currentTutorials == null ?
+								<div className="w-full mt-8 flex justify-center items-center">
+									<Spinner color="primary" size={50} />
+								</div>
+								:
+								<div className="w-full grid lg:grid-cols-2 grid-cols-1 mt-3 gap-5">
+									{
+										currentTutorials.map((card: Tutorial, index: number) =>
+											<Card
+												info={card}
+												key={index}
+												onStartRequest={() => navigator(`/tutorial/${card.id}`)}
+											/>
+										)
+									}
+								</div>
+						}
+						<Paginator currentPage={0} totalPages={20} />
 					</div>
 				</div>
 			</div>
