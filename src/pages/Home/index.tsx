@@ -32,13 +32,21 @@ export const Home = () => {
 
 	return (
 		<div className="bg-black">
-			<img src={Background} className="absolute inset-0 w-full object-cover h-[260px] " alt="Background Image"></img>
+			<img
+				src={Background}
+				className="absolute inset-0 w-full object-cover h-[260px] "
+				alt="Background Image"
+			></img>
 			{/* <Navbar /> */}
 			<div className="w-full pt-6 pb-8 flex justify-center items-center relative mt-20">
-				<img src={LogoCartesiLabs} alt="Logo Cartesi Labs" className="max-w-[232px] w-full" />
+				<img
+					src={LogoCartesiLabs}
+					alt="Logo Cartesi Labs"
+					className="max-w-[232px] w-full"
+				/>
 			</div>
 
-			<div className="bg-radial-gradient w-full h-screen" >
+			<div className="bg-radial-gradient w-full h-screen">
 				<div className="pt-20 flex items-start lg:w-3/4">
 					<Filter />
 					<div className="flex pl-7 pr-7 lg:pr-0 flex-1 flex-col mb-20">
@@ -65,11 +73,6 @@ export const Home = () => {
 					</div>
 				</div>
 			</div>
-
-
-
-
-
 		</div>
 	);
 };

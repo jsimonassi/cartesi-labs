@@ -4,29 +4,33 @@ const mockTutorials: Tutorial[] = [
 	{
 		id: "1",
 		title: "How to Build a Mock Tutorial",
-		description: "This tutorial will guide you through creating a mock for a Tutorial object.",
+		description:
+      "This tutorial will guide you through creating a mock for a Tutorial object.",
 		updatedAt: "2024-03-22T12:00:00Z",
 		approximatedTime: 30,
 		steps: [
 			{
 				title: "Step 1: Define Interface",
-				content: "Define the Tutorial interface with necessary properties."
+				content: "Define the Tutorial interface with necessary properties.",
 			},
 			{
 				title: "Step 2: Create Mock Data",
-				content: "Create mock data for the Tutorial object."
+				content: "Create mock data for the Tutorial object.",
 			},
 			{
 				title: "Step 3: Implement Mock",
-				content: "Use the mock data wherever needed for testing or demonstration purposes."
-			}
+				content:
+          "Use the mock data wherever needed for testing or demonstration purposes.",
+			},
 		],
 		likes: 10,
 		address: "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
-		toolTags: [{
-			name: "typescript",
-			icon: "typescript-icon.svg"
-		}]
+		toolTags: [
+			{
+				name: "typescript",
+				icon: "typescript-icon.svg",
+			},
+		],
 	},
 	{
 		id: "2",
@@ -37,28 +41,32 @@ const mockTutorials: Tutorial[] = [
 		steps: [
 			{
 				title: "Step 1: Understand Mock Data",
-				content: "Understand the purpose and benefits of using mock data."
+				content: "Understand the purpose and benefits of using mock data.",
 			},
 			{
 				title: "Step 2: Generate Mocks",
-				content: "Generate mock data for various scenarios in your application."
+				content:
+          "Generate mock data for various scenarios in your application.",
 			},
 			{
 				title: "Step 3: Integrate with Application",
-				content: "Integrate mock data into your application for testing and development."
-			}
+				content:
+          "Integrate mock data into your application for testing and development.",
+			},
 		],
 		likes: 8,
 		address: "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
-		toolTags: [{
-			name: "javascript",
-			icon: "javascript-icon.svg"
-		},
-		{
-			name: "testing",
-			icon: "testing-icon.svg"
-		}]
-	}
+		toolTags: [
+			{
+				name: "javascript",
+				icon: "javascript-icon.svg",
+			},
+			{
+				name: "testing",
+				icon: "testing-icon.svg",
+			},
+		],
+	},
 ];
 
 export default mockTutorials;

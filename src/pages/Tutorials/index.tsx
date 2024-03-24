@@ -11,7 +11,6 @@ import { useTutorials } from "../../contexts/Tutorial";
 const CARTESI_DISCORD_URL = "https://discord.gg/r8jEQCd3";
 
 const Tutorials = () => {
-
 	const [currentStep, setCurrentStep] = useState(0);
 	const [tutorial, setTutorial] = useState<Tutorial | null>(null);
 	const { getTutorialById } = useTutorials();
@@ -40,27 +39,31 @@ const Tutorials = () => {
 					onChangeStep={(newStep) => setCurrentStep(newStep)}
 					steps={tutorial?.steps ?? []}
 				/>
-				<AuthorInfos 
+				<AuthorInfos
 					lastUpdated={tutorial?.updatedAt ?? ""}
 					tutorialDuration={tutorial?.approximatedTime ?? 0}
-					onReportProblem={() => location.href = CARTESI_DISCORD_URL}
+					onReportProblem={() => (location.href = CARTESI_DISCORD_URL)}
 				/>
 			</div>
 			<div className=" w-3/4 flex-col">
-				{
-					currentStep === 0 ?
-						<div className=" justify-center items-center">
-							<h3 className="text-white text-h3 font-700 mt-8 ml-8 w-full text-center">{tutorial?.title}</h3>
-							<p className="text-secondaryText text-label-md font-500 ml-8 text-center">{tutorial?.description}</p>
-						</div>
-						: null
-				}
-				<MarkdownTutorialPreview source="" />
+				{currentStep === 0 ? (
+					<div className=" justify-center items-center">
+						<h3 className="text-white text-h3 font-700 mt-8 ml-8 w-full text-center">
+							{tutorial?.title}
+						</h3>
+						<p className="text-secondaryText text-label-md font-500 ml-8 text-center">
+							{tutorial?.description}
+						</p>
+					</div>
+				) : null}
+				<MarkdownTutorialPreview source="#Titutlo" />
 				<DirectionButtonGroup
 					onBack={() => setCurrentStep(currentStep - 1)}
 					onNext={() => setCurrentStep(currentStep + 1)}
 					onBackEnabled={currentStep > 0}
-					onNextEnabled={tutorial && currentStep < tutorial.steps.length - 1 ? true : false}
+					onNextEnabled={
+						tutorial && currentStep < tutorial.steps.length - 1 ? true : false
+					}
 				/>
 			</div>
 		</div>
