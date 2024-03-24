@@ -4,8 +4,9 @@ import web3 from "web3";
 import { FunctionsInspectEnum } from "../../../utils/enums";
 import DataSanitizer from "../../../utils/sanitizeData/index";
 import { GetTutorialPageRequest } from "../../../types/Api";
+import { PagedTutorialResponse } from "../../../types/Tutorial";
 
-async function GetTutorials(data: GetTutorialPageRequest): Promise<any> {
+async function getTutorials(data: GetTutorialPageRequest): Promise<PagedTutorialResponse> {
 	const { sanitizeArrayOfObjects } = new DataSanitizer();
 	const localStorareUser = localStorage.getItem("address");
 
@@ -28,17 +29,18 @@ async function GetTutorials(data: GetTutorialPageRequest): Promise<any> {
 	try {
 		const response = await axios.get(config.url);
 		if (response.data?.reports?.length === 0) {
-			return [];
+			Promise.resolve({data: [], total: 0, page: 0, limit: 0});
 		}
 		const parsedData = response.data.reports[0].payload;
 		const regularString = web3.utils.hexToAscii(parsedData);
 		const arrayOfString = regularString.split("\n");
 		const arrayOfObjects = sanitizeArrayOfObjects(arrayOfString);
-
-		return arrayOfObjects.length > 0 ? arrayOfObjects[0] : [];
+		return arrayOfObjects.length > 0 && arrayOfObjects[0].data.length > 0 ? 
+			arrayOfObjects[0] : 
+			Promise.resolve({data: [], total: 0, page: 0, limit: 0});
 	} catch (error) {
 		return Promise.reject(error);
 	}
 }
 
-export default GetTutorials;
+export default getTutorials;

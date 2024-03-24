@@ -12,7 +12,7 @@ import Paginator from "../../components/Paginator";
 
 export const Home = () => {
 
-	const {currentTutorialsPage, } = useTutorials();
+	const {currentTutorialsPage, onRequestNextPage } = useTutorials();
 	const currentTutorials = useMemo(() => {
 		if (currentTutorialsPage) {
 			return currentTutorialsPage.data;
@@ -23,11 +23,7 @@ export const Home = () => {
 	const navigator = useNavigate();
 
 	useEffect(() => {
-		// const run = async () => {
-		// 	const tutorials = await GetTutorials({ page: 1, limit: 10 });
-		// 	setCurrentTutorials(tutorials);
-		// };
-		// run();
+		onRequestNextPage();
 	}, []);
 
 	return (

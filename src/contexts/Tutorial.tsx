@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { PagedTutorialResponse, Tutorial } from "../types/Tutorial";
-import GetTutorials from "../services/cartesi/get-tutorials";
+import getTutorials from "../services/cartesi/get-tutorials";
 import GetTutorialById from "../services/cartesi/get-tutorial-by-id";
 
 interface TutorialsContextData {
@@ -28,11 +28,11 @@ const TutorialsProvider: React.FC<TutorialsProviderProps> = ({ children }) => {
 			nextPage = currentTutorialsPage.page + 1;
 		}
 		setCurrentTutorialsPage(null);
-		GetTutorials({ page: nextPage, limit: PAGE_SIZE })
+		getTutorials({ page: nextPage, limit: PAGE_SIZE })
 			.then((tutorials) => {
 				setCurrentTutorialsPage(tutorials);
 			}).catch((error) => {
-				//TODO: Validar error
+				setCurrentTutorialsPage({data: [], totalPages:0, page: 0});
 				console.log(error);
 			});
 	};
