@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Background from "../../assets/images/CartesiImageBg.png";
-import LogoCartesiLabs from "../../assets/images/LogoCartesiLabs.svg";
 import { Navbar } from "../../components/Navbar";
 import { Tutorial, TutorialStep } from "../../types/Tutorial";
 import TutorialTitleEdit from "./TutorialTitle";

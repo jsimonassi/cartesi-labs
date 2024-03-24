@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useRef, useState } from "react";
 import { ToolTags, Tutorial } from "../../../types/Tutorial";
 import TextInput from "../../../components/TextInput";
 import TextInputArea from "../../../components/TextArea";
-import tags from "../../../constants/options";
+import TAGS from "../../../constants/options";
 import BaseBtn from "../../../components/buttons/BaseBtn";
 import { useNavigate } from "react-router-dom";
 import { AddTutorialPage } from "..";
@@ -80,7 +81,7 @@ const Autocomplete = ({
 					value={inputValue}
 					onChange={handleChange}
 					className="bg-transparent text-white flex-1 w-full min-w-10 outline-none"
-					onFocus={(e) =>
+					onFocus={() =>
 						setFilteredOptions(
 							options.filter((option) => !selectedOptions.includes(option))
 						)
@@ -195,7 +196,7 @@ const TutorialTitleEdit = ({
 					/>
 				</div>
 				<Autocomplete
-					options={tags}
+					options={TAGS}
 					selectedOptions={tutorial.toolTags}
 					setSelectedOptions={(v) => {
 						setTutorial({ ...tutorial, toolTags: v });
