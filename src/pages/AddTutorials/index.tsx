@@ -23,8 +23,8 @@ const createEmptyTutorial = () => {
 };
 
 export enum AddTutorialPage {
-  Info,
-  Steps,
+	Info,
+	Steps,
 }
 
 const AddTutorials = () => {
@@ -33,7 +33,7 @@ const AddTutorials = () => {
 	const [page, setPage] = useState(AddTutorialPage.Info);
 
 	return (
-		<div className="bg-tutorialBackground w-screen h-full">
+		<div className="bg-tutorialBackground w-screen h-screen">
 			<Navbar />
 			<div className="flex justify-center items-center w-full">
 				{page === AddTutorialPage.Info ? (
