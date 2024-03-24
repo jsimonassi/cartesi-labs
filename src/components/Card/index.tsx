@@ -10,8 +10,6 @@ interface CardProps {
 
 export const Card = ({ info, onStartRequest }: CardProps) => {
 
-	console.log("INFO: ", info);
-
 	return (
 		<div className=" border border-white rounded w-full min-w-44 text-start flex flex-col py-2 pl-4 ">
 			<p className="text-white text-[16px] mb-1">{info.title}</p>

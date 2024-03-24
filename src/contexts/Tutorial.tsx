@@ -6,8 +6,8 @@ import addTutorial from "../services/cartesi/create-tutorial";
 
 interface TutorialsContextData {
 	currentTutorialsPage: PagedTutorialResponse | null;
-	getTutorialsByName: (name: string) => void;
-	onRequestNextPage: (newPage: number) => void;
+	getTutorialsByName: (name: string, toolTags: string[]) => void;
+	onRequestNextPage: (newPage: number, toolTags: string[]) => void;
 	getTutorialById: (id: number) => Promise<Tutorial>;
 	saveTutorial: (tutorial: Tutorial) => Promise<void>;
 }
@@ -16,7 +16,7 @@ interface TutorialsProviderProps {
 	children: React.ReactNode;
 }
 
-const PAGE_SIZE = 1;
+const PAGE_SIZE = 10;
 
 export const TutorialsContext = createContext({} as TutorialsContextData);
 
@@ -24,9 +24,9 @@ const TutorialsProvider: React.FC<TutorialsProviderProps> = ({ children }) => {
 
 	const [currentTutorialsPage, setCurrentTutorialsPage] = useState<PagedTutorialResponse | null>(null);
 
-	const onRequestNextPage = (newPage: number) => {
+	const onRequestNextPage = (newPage: number, toolTags: string[]) => {
 		setCurrentTutorialsPage(null);
-		getTutorials({ page: newPage, limit: PAGE_SIZE })
+		getTutorials({ page: newPage, limit: PAGE_SIZE }, null, toolTags)
 			.then((tutorials) => {
 				setCurrentTutorialsPage(tutorials);
 			}).catch((error) => {
@@ -35,14 +35,13 @@ const TutorialsProvider: React.FC<TutorialsProviderProps> = ({ children }) => {
 			});
 	};
 
-	const getTutorialsByName = (name: string) => {
-		//TODO: Validar paginação
+	const getTutorialsByName = (name: string, toolTags: string[]) => {
 		let nextPage = 0;
 		if(currentTutorialsPage){
 			nextPage = currentTutorialsPage.page + 1;
 		}
 		setCurrentTutorialsPage(null);
-		getTutorials({ page: nextPage, limit: PAGE_SIZE }, name)
+		getTutorials({ page: nextPage, limit: PAGE_SIZE }, name, toolTags)
 			.then((tutorials) => {
 				setCurrentTutorialsPage(tutorials);
 			}).catch((error) => {

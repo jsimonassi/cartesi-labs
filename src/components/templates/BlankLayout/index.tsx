@@ -1,5 +1,5 @@
-import { LayoutProps } from "../../../types";
 import React from "react";
+import { LayoutProps } from "../../../types";
 
 const BlankLayout = ({children}: LayoutProps) => {
 	return (

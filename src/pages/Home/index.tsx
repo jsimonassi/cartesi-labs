@@ -15,6 +15,7 @@ import _debounce from "lodash/debounce";
 export const Home = () => {
 
 	const [searchKey, setSearchKey] = useState<string>("");
+	const [tagFilters, setTagFilters] = useState<string[]>([]);
 	const { currentTutorialsPage, onRequestNextPage, getTutorialsByName } = useTutorials();
 	const currentTutorials = useMemo(() => {
 		if (currentTutorialsPage) {
@@ -23,17 +24,15 @@ export const Home = () => {
 		return null;
 	}, [currentTutorialsPage?.page]);
 
-	console.log("CURRENT TUTORIALS: ", currentTutorialsPage);
-
 	const navigator = useNavigate();
 
 	useEffect(() => {
-		onRequestNextPage(1);
-	}, []);
+		onRequestNextPage(currentTutorialsPage?.page ?? 1, tagFilters);
+	}, [tagFilters]);
 
 
 	const handleDebounceFn = (inputValue: string) => {
-		getTutorialsByName(inputValue);
+		getTutorialsByName(inputValue, tagFilters);
 	};
 
 	const debounceFn = useCallback(_debounce(handleDebounceFn, 500), []);
@@ -45,7 +44,6 @@ export const Home = () => {
 				className="absolute inset-0 w-full object-cover h-[260px] "
 				alt="Background Image"
 			></img>
-			{/* <Navbar /> */}
 			<div className="w-full pt-6 pb-8 flex justify-center items-center relative mt-20">
 				<img
 					src={LogoCartesiLabs}
@@ -56,7 +54,7 @@ export const Home = () => {
 
 			<div className="bg-radial-gradient w-full h-screen">
 				<div className="pt-20 flex items-start lg:w-3/4">
-					<Filter />
+					<Filter values={tagFilters} onFilterSelected={(newList) => setTagFilters(newList)} />
 					<div className="flex pl-7 pr-7 lg:pr-0 flex-1 flex-col mb-20">
 						<Search value={searchKey} onChange={(text: string) => {
 							setSearchKey(text);
@@ -83,7 +81,7 @@ export const Home = () => {
 						<Paginator
 							currentPage={currentTutorialsPage?.page ?? 1}
 							totalPages={currentTutorialsPage?.totalPages ?? 1}
-							onPageChange={(num) => onRequestNextPage(num)}
+							onPageChange={(num) => onRequestNextPage(num, tagFilters)}
 						/>
 					</div>
 				</div>

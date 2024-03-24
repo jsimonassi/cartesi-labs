@@ -7,7 +7,7 @@ import { GetTutorialPageRequest } from "../../../types/Api";
 import { PagedTutorialResponse } from "../../../types/Tutorial";
 import { parseApiPageToAppPage } from "./parser";
 
-async function getTutorials(data: GetTutorialPageRequest, name: string | null = null): Promise<PagedTutorialResponse> {
+async function getTutorials(data: GetTutorialPageRequest, name: string | null = null, toolTags: string[]): Promise<PagedTutorialResponse> {
 	const { sanitizeArrayOfObjects } = new DataSanitizer();
 	const localStorageUser = localStorage.getItem("address");
 
@@ -21,6 +21,11 @@ async function getTutorials(data: GetTutorialPageRequest, name: string | null = 
 	if(name){
 		payload.name = name;
 	}
+
+	if(toolTags && toolTags.length > 0){
+		payload.tags = toolTags;
+	}
+
 	const stringToEncode = JSON.stringify(payload);
 	const url = `${process.env.REACT_APP_INSPECT_URL}/${stringToEncode}`;
 
@@ -40,6 +45,7 @@ async function getTutorials(data: GetTutorialPageRequest, name: string | null = 
 		const regularString = web3.utils.hexToAscii(parsedData);
 		const arrayOfString = regularString.split("\n");
 		const arrayOfObjects = sanitizeArrayOfObjects(arrayOfString);
+		console.log("Cheguei aqui: ", arrayOfObjects);
 		return arrayOfObjects.length > 0 && Object.keys(arrayOfObjects[0].data).length > 0 ? 
 			parseApiPageToAppPage(arrayOfObjects[0]) : 
 			Promise.resolve({data: [], totalPages: 1, page: 1});
