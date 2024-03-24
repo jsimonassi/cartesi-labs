@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import React from "react";
 import InfoIcon from "../../assets/images/InfoIcon.svg";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 
